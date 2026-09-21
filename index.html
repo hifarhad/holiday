@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dresden Family Travel Portal (Multi-Modal & Budget Optimizer)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-indigo-400"></i> Dresden Family Voyage Planner
+                </h1>
+                <p class="text-indigo-200 text-sm mt-1">
+                    Custom Multi-Modal Search: Trains (Dresden Hbf) | Flights (DRS / BER / PRG) | Hotels & Airbnbs
+                </p>
+            </div>
+            <div class="mt-4 md:mt-0 bg-indigo-800/80 px-4 py-3 rounded-lg border border-indigo-700 text-xs md:text-sm">
+                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Configuration & Ages:</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1 text-slate-100">
+                    <div>Adult 1: <span class="text-indigo-300">41 yrs</span> (30.03.1985)</div>
+                    <div>Adult 2: <span class="text-indigo-300">32 yrs</span> (13.01.1994)</div>
+                    <div>Child 1: <span class="text-indigo-300">7 yrs</span> (01.02.2019)</div>
+                    <div>Child 2: <span class="text-indigo-300">4 yrs</span> (16.11.2021)</div>
+                    <div class="col-span-2">Infant: <span class="text-indigo-300">Infant (&lt;2 yrs)</span> (04.06.2026)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+
+        <!-- Controls / Filters Section -->
+        <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Select Holiday Period</label>
+                <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    <option value="herbst2026">Herbstferien 2026 (Oct 12 - Oct 24)</option>
+                    <option value="weihnachten2026">Weihnachtsferien 2026/27 (Dec 23 - Jan 2)</option>
+                    <option value="winter2027">Winterferien 2027 (Feb 8 - Feb 13)</option>
+                    <option value="oster2027">Osterferien 2027 (Mar 29 - Apr 10)</option>
+                    <option value="sommer2027">Sommerferien 2027 (Jul 5 - Aug 18)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Max Trip Length (Nights)</label>
+                <input type="number" id="maxNights" value="7" min="2" max="21" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <span class="text-[11px] text-slate-400 mt-1 block">Excluding travel days</span>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Routing Preference</label>
+                <select id="routingPref" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    <option value="auto">Smart Auto (Train first, then DRS, else BER/PRG)</option>
+                    <option value="train">Prioritize Trains from Dresden Hbf</option>
+                    <option value="flight">Prioritize Flights (DRS / BER / PRG)</option>
+                </select>
+            </div>
+
+            <div class="flex items-end">
+                <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-3 rounded-lg transition duration-150 flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-magnifying-glass"></i> Find Cheapest Bundles
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Area -->
+        <section class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-tags text-indigo-600"></i> Available Bundles (Sorted Lowest Price)
+                </h2>
+                <span id="resultCount" class="text-xs bg-slate-200 text-slate-700 px-3 py-1 rounded-full font-medium">5 Options Found</span>
+            </div>
+
+            <div id="resultsContainer" class="grid grid-cols-1 gap-6">
+                <!-- Dynamic cards injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-sm mt-12">
+        <p>Dresden Family Multi-Modal Travel Portal &bull; Tailored for 2 Adults, 7y, 4y, &amp; 4m Infant</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        const mockData = {
+            herbst2026: [
+                {
+                    destination: "Prague, Czech Republic",
+                    transportType: "Train (EuroCity from Dresden Hbf)",
+                    routeDetails: "Direct EC Dresden Hbf -> Praha hl.n. (~2h 15m)",
+                    travelDays: "2 travel days (Oct 12 & Oct 19)",
+                    nights: 6,
+                    days: 6,
+                    transportCostStandard: 118,
+                    transportCostBahnCard25: 88.50,
+                    stayType: "Family Apartment (Airbnb style)",
+                    stayCost: 520,
+                    totalStandard: 638,
+                    totalBC25: 608.50,
+                    badge: "Best Train Deal"
+                },
+                {
+                    destination: "Mallorca (Palma), Spain",
+                    transportType: "Flight from Berlin (BER) + Airport Bus from Dresden",
+                    routeDetails: "DB Train Dresden -> BER (2h) + Direct Flight to PMI",
+                    travelDays: "2 travel days (Oct 12 & Oct 19)",
+                    nights: 7,
+                    days: 7,
+                    transportCostStandard: 340,
+                    transportCostBahnCard25: 315.00,
+                    stayType: "Beach Resort Hotel (Family Suite)",
+                    stayCost: 680,
+                    totalStandard: 1020,
+                    totalBC25: 995.00,
+                    badge: "Lowest Flight Bundle"
+                },
+                {
+                    destination: "Vienna, Austria",
+                    transportType: "Train (EuroCity from Dresden Hbf)",
+                    routeDetails: "Direct EC Dresden Hbf -> Wien Hbf (~4h 45m)",
+                    travelDays: "2 travel days (Oct 12 & Oct 19)",
+                    nights: 5,
+                    days: 5,
+                    transportCostStandard: 158,
+                    transportCostBahnCard25: 118.50,
+                    stayType: "Central Aparthotel",
+                    stayCost: 590,
+                    totalStandard: 748,
+                    totalBC25: 708.50,
+                    badge: "City Break"
+                },
+                {
+                    destination: "Berlin & Brandenburg Lakes",
+                    transportType: "Train (DB Regional / ICE from Dresden Hbf)",
+                    routeDetails: "Direct ICE/RE Dresden Hbf -> Berlin Hauptbahnhof (~2h)",
+                    travelDays: "2 travel days (Oct 12 & Oct 18)",
+                    nights: 5,
+                    days: 5,
+                    transportCostStandard: 76,
+                    transportCostBahnCard25: 57.00,
+                    stayType: "Holiday Cottage (Ferienhaus)",
+                    stayCost: 450,
+                    totalStandard: 526,
+                    totalBC25: 507.00,
+                    badge: "Short Travel Time"
+                },
+                {
+                    destination: "Antalya, Turkey",
+                    transportType: "Direct Flight from Dresden Airport (DRS)",
+                    routeDetails: "Direct charter/scheduled flight from DRS (~3h)",
+                    travelDays: "2 travel days (Oct 12 & Oct 20)",
+                    nights: 7,
+                    days: 7,
+                    transportCostStandard: 580,
+                    transportCostBahnCard25: 580.00,
+                    stayType: "All-Inclusive Family Resort",
+                    stayCost: 950,
+                    totalStandard: 1530,
+                    totalBC25: 1530.00,
+                    badge: "Direct from DRS"
+                }
+            ],
+            weihnachten2026: [
+                {
+                    destination: "Nuremberg & Bavarian Alps",
+                    transportType: "Train (DB ICE via Nürnberg)",
+                    routeDetails: "Dresden Hbf -> Nürnberg Hbf (~3h 30m)",
+                    travelDays: "2 travel days (Dec 23 & Dec 30)",
+                    nights: 6,
+                    days: 6,
+                    transportCostStandard: 140,
+                    transportCostBahnCard25: 105.00,
+                    stayType: "Traditional Alpine Chalet",
+                    stayCost: 820,
+                    totalStandard: 960,
+                    totalBC25: 925.00,
+                    badge: "Winter Wonderland"
+                },
+                {
+                    destination: "Barcelona, Spain",
+                    transportType: "Flight from Prague (PRG) + Transfer",
+                    routeDetails: "FlixBus/Car Dresden -> PRG Airport + Direct Flight",
+                    travelDays: "2 travel days (Dec 23 & Dec 30)",
+                    nights: 6,
+                    days: 6,
+                    transportCostStandard: 410,
+                    transportCostBahnCard25: 410.00,
+                    stayType: "Family Apartment Eixample",
+                    stayCost: 740,
+                    totalStandard: 1150,
+                    totalBC25: 1150.00,
+                    badge: "Mild Winter Sun"
+                }
+            ],
+            winter2027: [
+                {
+                    destination: "Erzgebirge (Mountains near Dresden)",
+                    transportType: "Train & Regional Transit from Dresden Hbf",
+                    routeDetails: "DB Regio / Mitteldeutsche Regiobahn (~1h 15m)",
+                    travelDays: "2 travel days (Feb 8 & Feb 13)",
+                    nights: 4,
+                    days: 4,
+                    transportCostStandard: 42,
+                    transportCostBahnCard25: 31.50,
+                    stayType: "Ski & Sled Family Hotel",
+                    stayCost: 440,
+                    totalStandard: 482,
+                    totalBC25: 471.50,
+                    badge: "Quick Getaway"
+                }
+            ],
+            oster2027: [
+                {
+                    destination: "Rome, Italy",
+                    transportType: "Flight from Berlin (BER)",
+                    routeDetails: "DB to BER + Direct Flight to FCO (~2h 15m flight)",
+                    travelDays: "2 travel days (Mar 29 & Apr 5)",
+                    nights: 6,
+                    days: 6,
+                    transportCostStandard: 390,
+                    transportCostBahnCard25: 365.00,
+                    stayType: "Central Holiday Apartment",
+                    stayCost: 790,
+                    totalStandard: 1180,
+                    totalBC25: 1155.00,
+                    badge: "Spring Culture Trip"
+                }
+            ],
+            sommer2027: [
+                {
+                    destination: "Croatian Coast (Split / Makarska)",
+                    transportType: "Flight from Berlin (BER)",
+                    routeDetails: "Train Dresden -> BER + Flight to SPU",
+                    travelDays: "2 travel days (Jul 5 & Jul 15)",
+                    nights: 9,
+                    days: 9,
+                    transportCostStandard: 520,
+                    transportCostBahnCard25: 495.00,
+                    stayType: "Beachfront Villa with Pool",
+                    stayCost: 1450,
+                    totalStandard: 1970,
+                    totalBC25: 1945.00,
+                    badge: "Summer Holiday"
+                }
+            ]
+        };
+
+        function runSearch() {
+            const holidayKey = document.getElementById('holidaySelect').value;
+            const maxNights = parseInt(document.getElementById('maxNights').value) || 7;
+            const container = document.getElementById('resultsContainer');
+            
+            let options = mockData[holidayKey] || mockData.herbst2026;
+            
+            // Filter by nights if needed
+            options = options.filter(opt => opt.nights <= maxNights);
+
+            // Sort by lowest standard total price
+            options.sort((a, b) => a.totalStandard - b.totalStandard);
+
+            document.getElementById('resultCount').innerText = `${options.length} Options Found`;
+
+            if (options.length === 0) {
+                container.innerHTML = `<div class="bg-white p-8 rounded-xl text-center text-slate-500 border border-slate-200">No bundles match the exact night criteria for this period. Try increasing max nights or choosing another holiday.</div>`;
+                return;
+            }
+
+            container.innerHTML = options.map(item => `
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-indigo-300 transition">
+                    <div class="space-y-2 flex-grow">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full">${item.badge}</span>
+                            <h3 class="text-lg font-bold text-slate-900">${item.destination}</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 flex items-center gap-2">
+                            <i class="fa-solid fa-route text-slate-400"></i> ${item.routeDetails}
+                        </p>
+                        <div class="flex flex-wrap gap-4 text-xs text-slate-500 pt-1">
+                            <span><i class="fa-solid fa-calendar-days text-indigo-500 mr-1"></i> Stay Duration: <strong>${item.nights} Nights</strong> / ${item.days} Days (Excl. Travel)</span>
+                            <span><i class="fa-solid fa-suitcase-rolling text-indigo-500 mr-1"></i> ${item.travelDays}</span>
+                            <span><i class="fa-solid fa-bed text-indigo-500 mr-1"></i> ${item.stayType}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 min-w-[280px] text-right space-y-2">
+                        <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Total Bundle (2 Adults, 3 Kids)</div>
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-xs text-slate-600">Standard Price:</span>
+                            <span class="text-xl font-black text-slate-900">€${item.totalStandard.toFixed(2)}</span>
+                        </div>
+                        ${item.transportType.includes('Train') ? `
+                        <div class="flex justify-between items-baseline text-emerald-700 font-medium">
+                            <span class="text-xs">With BahnCard 25:</span>
+                            <span class="text-lg font-bold">€${item.totalBC25.toFixed(2)}</span>
+                        </div>` : ''}
+                        <button onclick="alert('Viewing full itinerary breakdown for ${item.destination}!')" class="w-full mt-2 bg-slate-900 hover:bg-indigo-600 text-white text-xs font-medium py-2 rounded-lg transition">
+                            View Detailed Breakdown
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize on load
+        window.onload = runSearch;
+    </script>
+</body>
+</html>
