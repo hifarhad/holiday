@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhad's Ultimate Dresden Family Travel Portal</title>
+    <title>Farhad's Comprehensive Dresden Family Travel Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,13 +15,13 @@
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <div class="flex items-center gap-2 text-indigo-400 text-sm font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-plane-circle-check"></i> Ultimate Deal Finder & Price Optimizer
+                    <i class="fa-solid fa-plane-circle-check"></i> Comprehensive Family Price Comparator (Up to €5,000)
                 </div>
                 <h1 class="text-2xl md:text-3xl font-black mt-1">
                     Dresden Family Holiday Portal
                 </h1>
                 <p class="text-slate-400 text-xs mt-1">
-                    Instantly finds the absolute cheapest Saxony school holiday deals with reliable portal links.
+                    Showing all matching deals sorted strictly from lowest to highest price.
                 </p>
             </div>
             
@@ -60,7 +60,7 @@
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Filter Deal Type</label>
                 <select id="typeFilter" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
-                    <option value="all">All Deals (Sorted Lowest Price First)</option>
+                    <option value="all">All Deals (Sorted Lowest to Highest Price)</option>
                     <option value="package">Package Deals (Ab-in-den-urlaub / Check24)</option>
                     <option value="train">Trains from Dresden Hbf (DB)</option>
                     <option value="diy">DIY Flights & Hotels</option>
@@ -69,7 +69,7 @@
 
             <div class="flex items-end">
                 <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
-                    <i class="fa-solid fa-magnifying-glass-dollar"></i> Scan & Find Cheapest
+                    <i class="fa-solid fa-magnifying-glass-dollar"></i> Scan & Sort All Deals
                 </button>
             </div>
         </section>
@@ -77,7 +77,7 @@
         <!-- Results Display Header -->
         <div class="flex justify-between items-center px-2">
             <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-fire text-amber-500"></i> Best Family Holiday Offers (Ranked by Price)
+                <i class="fa-solid fa-fire text-amber-500"></i> Family Holiday Offers (Up to €5,000)
             </h2>
             <span id="resultCount" class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1.5 rounded-full border border-indigo-100">0 Options</span>
         </div>
@@ -101,40 +101,76 @@
                 datesLabel: "Oct 10 – Oct 25, 2026 (Weekend Shift)",
                 deals: [
                     {
-                        title: "Prague Family Getaway (Direct Train from Dresden Hbf)",
+                        title: "Erzgebirge Nature Holiday Cottage",
                         type: "train",
-                        route: "Direct EuroCity Dresden Hbf -> Prague (Sat-Sun stretch)",
+                        route: "Regional Transit from Dresden Hbf",
                         nights: 14,
-                        totalPrice: 1059.90, // Transport (€79.90 DB for 2 adults, kids free) + Hotel (€980)
+                        totalPrice: 550.00,
+                        breakdown: "DB Regio: €30.00 + Cottage Stay: €520.00",
+                        badge: "🌲 Budget Nature Stay",
+                        desc: "Quiet mountain retreat close to Dresden with very low transport costs.",
+                        city: "Oberwiesenthal",
+                        provider: "DB Regio & Booking.com"
+                    },
+                    {
+                        title: "Prague Family Getaway (Direct Train)",
+                        type: "train",
+                        route: "Direct EuroCity Dresden Hbf -> Prague",
+                        nights: 14,
+                        totalPrice: 1059.90,
                         breakdown: "DB Train: €79.90 + Stay: €980.00",
                         badge: "✨ Cheapest Train Deal",
-                        desc: "Zero airport security with an infant. Children aged 4 and 7 travel completely free with DB family rules.",
+                        desc: "Zero airport security with an infant. Children aged 4 and 7 travel free with DB family rules.",
                         city: "Prague",
                         provider: "Deutsche Bahn & Booking.com"
                     },
                     {
-                        title: "Antalya All-Inclusive Package Deal (Top Value)",
+                        title: "Berlin & Brandenburg Lakes Stay",
+                        type: "train",
+                        route: "Direct ICE/RE Dresden Hbf -> Berlin Hbf",
+                        nights: 14,
+                        totalPrice: 1153.90,
+                        breakdown: "DB Train: €53.90 + Stay: €1100.00",
+                        badge: "🚆 Short Travel Time",
+                        desc: "Only a 2-hour train ride from Dresden Hauptbahnhof.",
+                        city: "Berlin",
+                        provider: "Deutsche Bahn & Booking.com"
+                    },
+                    {
+                        title: "Antalya All-Inclusive Package Deal",
                         type: "package",
-                        route: "Direct Flight from Dresden (DRS) or Berlin (BER) + Resort Package",
+                        route: "Direct Flight from DRS/BER + Resort Package",
                         nights: 14,
                         totalPrice: 1420.00,
-                        breakdown: "Flights + All-Inclusive Hotel + Transfers Included",
-                        badge: "🏆 Absolute Cheapest Overall Package",
-                        desc: "Unbeatable tour operator pricing for families with young children, including all meals and baggage.",
+                        breakdown: "Flights + All-Inclusive Hotel + Transfers",
+                        badge: "🏆 Best Package Value",
+                        desc: "Unbeatable tour operator pricing including all meals, baggage, and transfers.",
                         city: "Antalya",
                         provider: "Ab-in-den-urlaub.de"
                     },
                     {
                         title: "Mallorca Beach Suite (DIY Flight + Hotel)",
                         type: "diy",
-                        route: "Train to Berlin (BER) + Direct Flight to Palma de Mallorca",
+                        route: "Train to BER + Direct Flight to Palma de Mallorca",
                         nights: 14,
                         totalPrice: 1480.00,
                         breakdown: "Flights: €380.00 + Stay: €1100.00",
                         badge: "☀️ DIY Sun Escape",
-                        desc: "Book flights via Skyscanner and family apartment via Booking.com for exact date control.",
+                        desc: "Book flights via Skyscanner and family apartment via Booking.com.",
                         city: "Palma de Mallorca",
                         provider: "Skyscanner & Booking.com"
+                    },
+                    {
+                        title: "Greek Islands (Crete) Family Resort Package",
+                        type: "package",
+                        route: "Flight from BER + 4-Star Resort",
+                        nights: 14,
+                        totalPrice: 2150.00,
+                        breakdown: "Flights + Half-Board Hotel Package",
+                        badge: "🏖️ Mediterranean Package",
+                        desc: "Great family resort with children's pools and beach access.",
+                        city: "Heraklion",
+                        provider: "Check24 Pauschalreisen"
                     }
                 ]
             },
@@ -149,8 +185,20 @@
                         totalPrice: 1249.90,
                         breakdown: "DB Train: €99.90 + Stay: €1150.00",
                         badge: "✨ Best Festive Train Deal",
-                        desc: "Enjoy traditional holiday markets with stress-free train travel directly out of Dresden.",
+                        desc: "Enjoy traditional holiday markets with stress-free train travel.",
                         city: "Nuremberg",
+                        provider: "Deutsche Bahn & Booking.com"
+                    },
+                    {
+                        title: "Vienna Christmas Aparthotel Stay",
+                        type: "train",
+                        route: "Direct EuroCity Dresden Hbf -> Vienna Hbf",
+                        nights: 14,
+                        totalPrice: 1419.90,
+                        breakdown: "DB Train: €159.90 + Stay: €1260.00",
+                        badge: "🎄 Imperial City Break",
+                        desc: "Direct comfortable EuroCity train straight to Vienna.",
+                        city: "Vienna",
                         provider: "Deutsche Bahn & Booking.com"
                     },
                     {
@@ -158,12 +206,24 @@
                         type: "package",
                         route: "Flight from BER + Heated Pool Resort Package",
                         nights: 14,
-                        totalPrice: 2250.00,
+                        totalPrice: 2400.00,
                         breakdown: "Flights + Hotel Package (All-In)",
-                        badge: "🌴 Warm Weather Package",
-                        desc: "Complete tour operator package with guaranteed sunshine during Christmas break.",
+                        badge: "🌴 Guaranteed Warm Weather",
+                        desc: "Complete tour operator package with guaranteed sunshine.",
                         city: "Tenerife",
                         provider: "Check24 Pauschalreisen"
+                    },
+                    {
+                        title: "Gran Canaria Luxury Family Resort",
+                        type: "package",
+                        route: "Flight from BER + All-Inclusive Resort",
+                        nights: 14,
+                        totalPrice: 3200.00,
+                        breakdown: "Flights + 5-Star All-In Resort",
+                        badge: "⭐ Luxury Winter Escape",
+                        desc: "High-end resort with dedicated kids club and baby services.",
+                        city: "Las Palmas",
+                        provider: "Ab-in-den-urlaub.de"
                     }
                 ]
             },
@@ -181,24 +241,24 @@
                         desc: "Shortest travel distance from Dresden. Ideal snow holiday with toddlers.",
                         city: "Oberwiesenthal",
                         provider: "DB Regio & Booking.com"
+                    },
+                    {
+                        title: "Bavarian Alps Winter Cottage (DIY)",
+                        type: "train",
+                        route: "ICE to Munich + Regional Train",
+                        nights: 7,
+                        totalPrice: 980.00,
+                        breakdown: "DB Train: €160.00 + Stay: €820.00",
+                        badge: "🏔️ Alpine Snow Retreat",
+                        desc: "Scenic mountain views and cozy winter atmosphere.",
+                        city: "Garmisch-Partenkirchen",
+                        provider: "Deutsche Bahn & Booking.com"
                     }
                 ]
             },
             oster2027: {
                 datesLabel: "Mar 27 – Apr 11, 2027 (Osterferien)",
                 deals: [
-                    {
-                        title: "Cyprus Easter Sun Package",
-                        type: "package",
-                        route: "Flight + All-Inclusive Resort Package",
-                        nights: 14,
-                        totalPrice: 1850.00,
-                        breakdown: "Flights + Hotel Package (All-In)",
-                        badge: "🐣 Best Easter Package",
-                        desc: "Zero cooking, all meals included, and direct transfer from airport to resort.",
-                        city: "Paphos",
-                        provider: "Ab-in-den-urlaub.de"
-                    },
                     {
                         title: "Rome Spring City Break (DIY)",
                         type: "diy",
@@ -207,27 +267,39 @@
                         totalPrice: 1770.00,
                         breakdown: "Flights: €420.00 + Stay: €1350.00",
                         badge: "🏛️ Cultural Spring Trip",
-                        desc: "Mild Italian spring weather ideal for traveling with children and an infant stroller.",
+                        desc: "Mild Italian spring weather ideal for traveling with children.",
                         city: "Rome",
                         provider: "Skyscanner & Booking.com"
+                    },
+                    {
+                        title: "Cyprus Easter Sun Package",
+                        type: "package",
+                        route: "Flight + All-Inclusive Resort Package",
+                        nights: 14,
+                        totalPrice: 1950.00,
+                        breakdown: "Flights + Hotel Package (All-In)",
+                        badge: "🐣 All-In Easter Package",
+                        desc: "Zero cooking, all meals included, and direct transfer from airport.",
+                        city: "Paphos",
+                        provider: "Ab-in-den-urlaub.de"
+                    },
+                    {
+                        title: "Antalya Easter Family Resort",
+                        type: "package",
+                        route: "Flight from DRS/BER + 5-Star Resort",
+                        nights: 14,
+                        totalPrice: 2450.00,
+                        breakdown: "Flights + All-Inclusive Resort",
+                        badge: "🌷 Warm Spring Package",
+                        desc: "Enjoy early Mediterranean warmth with full family amenities.",
+                        city: "Antalya",
+                        provider: "Check24 Pauschalreisen"
                     }
                 ]
             },
             sommer2027: {
                 datesLabel: "Jul 3 – Jul 18, 2027 (Sommerferien)",
                 deals: [
-                    {
-                        title: "Greek Islands (Rhodes) Beach Resort Package",
-                        type: "package",
-                        route: "Saturday Departure from DRS/BER + Beach Hotel Package",
-                        nights: 14,
-                        totalPrice: 2750.00,
-                        breakdown: "Flights + All-Inclusive Beach Resort",
-                        badge: "🏖️ Top Summer Package",
-                        desc: "The gold standard for families with small kids: all-inclusive meals, beach access, and flights bundled.",
-                        city: "Rhodes",
-                        provider: "Check24 Pauschalreisen"
-                    },
                     {
                         title: "Croatian Coast Villa & Travel Bundle (DIY)",
                         type: "diy",
@@ -236,9 +308,45 @@
                         totalPrice: 2410.00,
                         breakdown: "Flights: €560.00 + Villa Stay: €1850.00",
                         badge: "🌊 Private Pool Villa",
-                        desc: "Private pool villa on the crystal-clear Croatian coastline with reliable DIY booking.",
+                        desc: "Private pool villa on the crystal-clear Croatian coastline.",
                         city: "Split",
                         provider: "Skyscanner & Booking.com"
+                    },
+                    {
+                        title: "Greek Islands (Rhodes) Beach Resort Package",
+                        type: "package",
+                        route: "Saturday Departure from DRS/BER + Beach Hotel Package",
+                        nights: 14,
+                        totalPrice: 2750.00,
+                        breakdown: "Flights + All-Inclusive Beach Resort",
+                        badge: "🏖️ Top Summer Package",
+                        desc: "All-inclusive meals, beach access, and flights bundled.",
+                        city: "Rhodes",
+                        provider: "Check24 Pauschalreisen"
+                    },
+                    {
+                        title: "Mallorca All-Inclusive Family Club",
+                        type: "package",
+                        route: "Direct Flight from DRS + Club Resort",
+                        nights: 14,
+                        totalPrice: 3450.00,
+                        breakdown: "Flights + Family Club Resort",
+                        badge: "☀️ Premium Summer Club",
+                        desc: "Top-rated family club with childcare and direct beach access.",
+                        city: "Alcúdia",
+                        provider: "Ab-in-den-urlaub.de"
+                    },
+                    {
+                        title: "Turkish Riviera Ultra Luxury Resort",
+                        type: "package",
+                        route: "Direct Flight + 5-Star Ultra All-In",
+                        nights: 14,
+                        totalPrice: 4200.00,
+                        breakdown: "Flights + 5-Star Ultra All-Inclusive",
+                        badge: "⭐ Luxury Summer Package",
+                        desc: "Ultimate luxury and relaxation for the entire family under €5,000 budget.",
+                        city: "Belek",
+                        provider: "Check24 Pauschalreisen"
                     }
                 ]
             }
@@ -257,13 +365,16 @@
                 list = list.filter(item => item.type === typeFilter);
             }
 
-            // Sort strictly by lowest total price
+            // Filter up to €5,000 budget
+            list = list.filter(item => item.totalPrice <= 5000);
+
+            // Sort strictly from lowest to highest price
             list.sort((a, b) => a.totalPrice - b.totalPrice);
 
-            document.getElementById('resultCount').innerText = `${list.length} Options Found`;
+            document.getElementById('resultCount').innerText = `${list.length} Options Found (Sorted Low to High)`;
 
             if (list.length === 0) {
-                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match your filter criteria for this vacation window.</div>`;
+                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match your filter criteria under €5,000 for this window.</div>`;
                 return;
             }
 
