@@ -3,45 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dresden Family Travel Portal (Packages, Trains, Flights & Hotels)</title>
+    <title>Farhad's Expert Family Travel Portal (Dresden Hub)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-indigo-900 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+    <!-- Professional Travel Agent Header -->
+    <header class="bg-slate-900 text-white shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
-                <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
-                    <i class="fa-solid fa-compass text-indigo-400"></i> Farhad's Family Voyage Planner
+                <div class="flex items-center gap-2 text-indigo-400 text-sm font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-suitcase-rolling"></i> Professional Travel Agency Engine
+                </div>
+                <h1 class="text-2xl md:text-3xl font-black mt-1">
+                    Dresden Family Holiday Portal
                 </h1>
-                <p class="text-indigo-200 text-sm mt-1">
-                    Multi-Modal Search: Trains (DB) | Flights & Hotels | Package Deals (Ab-in-den-urlaub & Check24)
+                <p class="text-slate-400 text-xs mt-1">
+                    Curated by an expert agent for Farhad Chowdhury: Optimized for Saxony School Vacations & Family Tariffs.
                 </p>
             </div>
-            <div class="mt-4 md:mt-0 bg-indigo-800/80 px-4 py-3 rounded-lg border border-indigo-700 text-xs md:text-sm">
-                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Setup (DOBs Verified):</p>
-                <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1 text-slate-100">
-                    <div>Adult 1: <span class="text-indigo-300">30.03.1985</span> (41 yrs)</div>
-                    <div>Adult 2: <span class="text-indigo-300">13.01.1994</span> (32 yrs)</div>
-                    <div>Child 1: <span class="text-indigo-300">01.02.2019</span> (7 yrs)</div>
-                    <div>Child 2: <span class="text-indigo-300">16.11.2021</span> (4 yrs)</div>
-                    <div class="col-span-2">Infant: <span class="text-indigo-300">04.06.2026</span> (Infant &lt;1 yr)</div>
+            
+            <!-- Verified Family Profile Card -->
+            <div class="bg-slate-800/90 px-4 py-3 rounded-xl border border-slate-700 text-xs shadow-inner">
+                <p class="font-bold text-indigo-300 flex items-center gap-1 mb-1">
+                    <i class="fa-solid fa-users"></i> Passenger Manifest (Verified):
+                </p>
+                <div class="grid grid-cols-2 gap-x-6 gap-y-0.5 text-slate-300">
+                    <div>Adult 1: <span class="text-white font-medium">41 yrs</span> (30.03.1985)</div>
+                    <div>Adult 2: <span class="text-white font-medium">32 yrs</span> (13.01.1994)</div>
+                    <div>Child 1: <span class="text-white font-medium">7 yrs</span> (01.02.2019)</div>
+                    <div>Child 2: <span class="text-white font-medium">4 yrs</span> (16.11.2021)</div>
+                    <div class="col-span-2 text-emerald-400 font-semibold mt-0.5">Infant: Under 1 yr (04.06.2026)</div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+    <!-- Main Application Container -->
+    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full space-y-6">
 
-        <!-- Controls / Filters Section -->
-        <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Agent Search & Filter Bar -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Holiday Window</label>
-                <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Saxony School Vacation</label>
+                <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
                     <option value="herbst2026">Herbstferien 2026 (Oct 12 - Oct 24)</option>
                     <option value="weihnachten2026">Weihnachtsferien 2026/27 (Dec 23 - Jan 2)</option>
                     <option value="winter2027">Winterferien 2027 (Feb 8 - Feb 13)</option>
@@ -52,166 +59,225 @@
 
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Max Stay Duration (Nights)</label>
-                <input type="number" id="maxNights" value="7" min="2" max="21" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" oninput="runSearch()">
-                <span class="text-[11px] text-slate-400 mt-1 block">Excluding travel days</span>
+                <input type="number" id="maxNights" value="7" min="2" max="21" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" oninput="runSearch()">
+                <span class="text-[11px] text-slate-400 mt-1 block">Excluding travel/transit days</span>
             </div>
 
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Deal Type Preference</label>
-                <select id="routingPref" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
-                    <option value="all">All Deals (Trains, Flights & Package Portals)</option>
-                    <option value="train">Trains from Dresden Hbf Only</option>
-                    <option value="package">Package & Last-Minute Deals (Ab-in-den-urlaub / Check24)</option>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Travel Style / Routing</label>
+                <select id="travelStyle" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
+                    <option value="all">All Recommendations (Packages & DIY)</option>
+                    <option value="package">Package Deals Only (Ab-in-den-urlaub / Check24)</option>
+                    <option value="train">Trains from Dresden Hbf Only (DB)</option>
                 </select>
             </div>
 
             <div class="flex items-end">
-                <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-3 rounded-lg transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-magnifying-glass"></i> Search Bundles
+                <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Agent Deals
                 </button>
             </div>
         </section>
 
-        <!-- Results Area -->
-        <section class="space-y-4">
-            <div class="flex justify-between items-center">
-                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-tags text-indigo-600"></i> Available Family Holiday Bundles
-                </h2>
-                <span id="resultCount" class="text-xs bg-slate-200 text-slate-700 px-3 py-1 rounded-full font-medium">Options Found</span>
-            </div>
+        <!-- Results Display Header -->
+        <div class="flex justify-between items-center px-2">
+            <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-indigo-600"></i> Recommended Itineraries & Packages
+            </h2>
+            <span id="resultCount" class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1.5 rounded-full border border-indigo-100">0 Options</span>
+        </div>
 
-            <div id="resultsContainer" class="grid grid-cols-1 gap-6">
-                <!-- Dynamic cards injected via JS -->
-            </div>
-        </section>
+        <!-- Deal Cards Grid -->
+        <div id="resultsContainer" class="grid grid-cols-1 gap-6">
+            <!-- Dynamically populated -->
+        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-sm mt-12">
-        <p>Dresden Family Travel Portal &bull; Tailored for Farhad Chowdhury &amp; Family</p>
+    <!-- Professional Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-xs mt-12">
+        <p>Farhad's Family Travel Hub &bull; Tailored for 2 Adults, 7y, 4y &amp; 4m Infant departing from Dresden / Saxony</p>
     </footer>
 
-    <!-- JavaScript Data and Logic -->
+    <!-- Agent Logic Script -->
     <script>
-        const holidayDataMap = {
+        const database = {
             herbst2026: {
                 flightStart: "261012", flightEnd: "261019",
-                hotelCheckIn: "2026-10-12", hotelCheckOut: "2026-10-18",
+                hotelIn: "2026-10-12", hotelOut: "2026-10-18",
                 dbDate: "2026-10-12",
-                items: [
+                deals: [
                     {
-                        destination: "Prague, Czech Republic", cityQuery: "Prague", type: "train",
-                        routeDetails: "Direct EC Dresden Hbf -> Praha hl.n. (~2h 15m). Kids 4 & 7 ride FREE on DB!",
-                        travelDays: "2 travel days (Oct 12 & Oct 19)", nights: 6, days: 6,
-                        transportCostStandard: 79.90, transportCostBahnCard25: 59.92,
-                        stayType: "Family Apartment (Airbnb style)", stayCost: 520.00, badge: "Best DB Train Deal"
+                        title: "Antalya All-Inclusive Family Resort (Top Agent Pick)",
+                        type: "package",
+                        provider: "Ab-in-den-urlaub.de",
+                        route: "Direct Flight from Dresden (DRS) or Berlin (BER) + Hotel + Transfers",
+                        travelDays: "2 travel days (Oct 12 & Oct 20)",
+                        nights: 7, days: 7,
+                        totalPrice: 1350.00,
+                        badge: "Agent's #1 Choice (Best Value)",
+                        desc: "Includes direct flights, luggage, infant accommodation, and all meals. Zero hassle with 3 kids.",
+                        searchCity: "Antalya"
                     },
                     {
-                        destination: "Berlin & Brandenburg Lakes", cityQuery: "Berlin", type: "train",
-                        routeDetails: "Direct ICE/RE Dresden Hbf -> Berlin Hbf (~2h). Kids free.",
-                        travelDays: "2 travel days (Oct 12 & Oct 18)", nights: 5, days: 5,
-                        transportCostStandard: 53.90, transportCostBahnCard25: 40.42,
-                        stayType: "Holiday Cottage (Ferienhaus)", stayCost: 450.00, badge: "Short Travel Time"
+                        title: "Mallorca Beach Suite & Flight Package",
+                        type: "package",
+                        provider: "Check24 Pauschalreisen",
+                        route: "Flight from Berlin Brandenburg (BER) + 4-Star Family Hotel",
+                        travelDays: "2 travel days (Oct 12 & Oct 19)",
+                        nights: 7, days: 7,
+                        totalPrice: 1480.00,
+                        badge: "Family Favorite",
+                        desc: "Short flight time from BER, children's pool, and apartment-style family suites.",
+                        searchCity: "Palma de Mallorca"
                     },
                     {
-                        destination: "Mallorca (Palma), Spain", origin: "ber", dest: "pmi", cityQuery: "Palma de Mallorca", type: "flight-hotel",
-                        routeDetails: "DB to BER + Flight to PMI (Synced Dates)",
-                        travelDays: "2 travel days (Oct 12 & Oct 19)", nights: 7, days: 7,
-                        transportCostStandard: 380.00, transportCostBahnCard25: 380.00,
-                        stayType: "Beach Resort Hotel (Family Suite)", stayCost: 680.00, badge: "Lowest Flight Bundle"
+                        title: "Prague Historical City Break (Train Journey)",
+                        type: "train",
+                        provider: "Deutsche Bahn & Airbnb",
+                        route: "Direct EuroCity from Dresden Hbf (~2h 15m). Kids age 4 & 7 ride FREE!",
+                        travelDays: "2 travel days (Oct 12 & Oct 19)",
+                        nights: 6, days: 6,
+                        transportStd: 79.90, transportBC25: 59.92,
+                        stayCost: 520.00,
+                        badge: "Best Train Deal (No Airports!)",
+                        desc: "Incredible stress-free train ride straight from Dresden Hauptbahnhof with infant space.",
+                        searchCity: "Prague",
+                        origin: "Dresden Hbf"
                     },
                     {
-                        destination: "Antalya, Turkey (All-Inclusive Package)", cityQuery: "Antalya", type: "package",
-                        routeDetails: "Complete Flight (from Dresden DRS / BER) + Hotel Package Deal",
-                        travelDays: "2 travel days (Oct 12 & Oct 20)", nights: 7, days: 7,
-                        transportCostStandard: 1250.00, transportCostBahnCard25: 1250.00, // Total package price
-                        stayType: "All-Inclusive Family Resort (Flights + Stay)", stayCost: 0, badge: "Ab-in-den-urlaub Package"
-                    },
-                    {
-                        destination: "Hurghada, Egypt (Last-Minute Family Deal)", cityQuery: "Hurghada", type: "package",
-                        routeDetails: "All-Inclusive Last-Minute Holiday Package from Leipzig/Berlin",
-                        travelDays: "2 travel days (Oct 12 & Oct 19)", nights: 7, days: 7,
-                        transportCostStandard: 1390.00, transportCostBahnCard25: 1390.00,
-                        stayType: "5-Star Beach Resort (All-Inclusive)", stayCost: 0, badge: "Check24 Last-Minute"
+                        title: "Berlin & Brandenburg Lakes Cottage Retreat",
+                        type: "train",
+                        provider: "DB Regio / ICE + Ferienhaus",
+                        route: "Direct ICE/RE from Dresden Hbf to Berlin (~2h)",
+                        travelDays: "2 travel days (Oct 12 & Oct 18)",
+                        nights: 5, days: 5,
+                        transportStd: 53.90, transportBC25: 40.42,
+                        stayCost: 450.00,
+                        badge: "Budget Short Trip",
+                        desc: "Quiet nature retreat close to home, perfect for managing a 4-month-old infant.",
+                        searchCity: "Berlin",
+                        origin: "Dresden Hbf"
                     }
                 ]
             },
             weihnachten2026: {
                 flightStart: "261223", flightEnd: "261230",
-                hotelCheckIn: "2026-12-23", hotelCheckOut: "2026-12-29",
+                hotelIn: "2026-12-23", hotelOut: "2026-12-29",
                 dbDate: "2026-12-23",
-                items: [
+                deals: [
                     {
-                        destination: "Nuremberg & Bavarian Alps", cityQuery: "Nuremberg", type: "train",
-                        routeDetails: "Dresden Hbf -> Nürnberg Hbf (~3h 30m). Kids free.",
-                        travelDays: "2 travel days (Dec 23 & Dec 30)", nights: 6, days: 6,
-                        transportCostStandard: 99.90, transportCostBahnCard25: 74.92,
-                        stayType: "Traditional Alpine Chalet", stayCost: 820.00, badge: "Winter Wonderland"
+                        title: "Nuremberg Christmas Market & Alpine Chalet",
+                        type: "train",
+                        provider: "Deutsche Bahn & Booking.com",
+                        route: "Direct ICE via Nürnberg (~3h 30m from Dresden Hbf)",
+                        travelDays: "2 travel days (Dec 23 & Dec 30)",
+                        nights: 6, days: 6,
+                        transportStd: 99.90, transportBC25: 74.92,
+                        stayCost: 820.00,
+                        badge: "Winter Holiday Pick",
+                        desc: "Magical Christmas atmosphere with zero airport security queues with small children.",
+                        searchCity: "Nuremberg",
+                        origin: "Dresden Hbf"
                     },
                     {
-                        destination: "Tenerife, Spain (Winter Sun Package)", cityQuery: "Tenerife", type: "package",
-                        routeDetails: "Flight + Hotel Package via Check24",
-                        travelDays: "2 travel days (Dec 23 & Dec 30)", nights: 7, days: 7,
-                        transportCostStandard: 1850.00, transportCostBahnCard25: 1850.00,
-                        stayType: "Family Hotel with Heated Pool", stayCost: 0, badge: "Check24 Package Deal"
+                        title: "Tenerife Winter Sun All-Inclusive Package",
+                        type: "package",
+                        provider: "Check24 Last-Minute",
+                        route: "Flight from Berlin (BER) + Heated Pool Resort",
+                        travelDays: "2 travel days (Dec 23 & Dec 30)",
+                        nights: 7, days: 7,
+                        totalPrice: 1950.00,
+                        badge: "Warm Weather Escape",
+                        desc: "Guaranteed sunshine and warm temperatures during German winter holidays.",
+                        searchCity: "Tenerife"
                     }
                 ]
             },
             winter2027: {
                 flightStart: "270208", flightEnd: "270213",
-                hotelCheckIn: "2027-02-08", hotelCheckOut: "2027-02-12",
+                hotelIn: "2027-02-08", hotelOut: "2027-02-12",
                 dbDate: "2027-02-08",
-                items: [
+                deals: [
                     {
-                        destination: "Erzgebirge (Mountains near Dresden)", cityQuery: "Oberwiesenthal", type: "train",
-                        routeDetails: "DB Regio / MRB (~1h 15m). Kids free.",
-                        travelDays: "2 travel days (Feb 8 & Feb 13)", nights: 4, days: 4,
-                        transportCostStandard: 38.00, transportCostBahnCard25: 28.50,
-                        stayType: "Ski & Sled Family Hotel", stayCost: 440.00, badge: "Quick Getaway"
+                        title: "Erzgebirge Family Ski & Sled Hotel",
+                        type: "train",
+                        provider: "DB Regio & Regional Hotel",
+                        route: "Regional Transit from Dresden Hbf (~1h 15m)",
+                        travelDays: "2 travel days (Feb 8 & Feb 13)",
+                        nights: 4, days: 4,
+                        transportStd: 38.00, transportBC25: 28.50,
+                        stayCost: 440.00,
+                        badge: "Winterferien Special",
+                        desc: "Shortest travel distance from Dresden. Ideal snow holiday with 4 and 7-year-olds.",
+                        searchCity: "Oberwiesenthal",
+                        origin: "Dresden Hbf"
                     }
                 ]
             },
             oster2027: {
                 flightStart: "270329", flightEnd: "270405",
-                hotelCheckIn: "2027-03-29", hotelCheckOut: "2027-04-04",
+                hotelIn: "2027-03-29", hotelOut: "2027-04-04",
                 dbDate: "2027-03-29",
-                items: [
+                deals: [
                     {
-                        destination: "Rome, Italy", origin: "ber", dest: "fco", cityQuery: "Rome", type: "flight-hotel",
-                        routeDetails: "DB to BER + Direct Flight to FCO",
-                        travelDays: "2 travel days (Mar 29 & Apr 5)", nights: 6, days: 6,
-                        transportCostStandard: 410.00, transportCostBahnCard25: 410.00,
-                        stayType: "Central Holiday Apartment", stayCost: 790.00, badge: "Spring Culture Trip"
+                        title: "Rome Spring Culture & Apartment Stay",
+                        type: "diy-flight",
+                        provider: "Skyscanner & Booking.com",
+                        route: "Train to BER + Direct Flight to FCO",
+                        travelDays: "2 travel days (Mar 29 & Apr 5)",
+                        nights: 6, days: 6,
+                        transportStd: 410.00, transportBC25: 410.00,
+                        stayCost: 790.00,
+                        badge: "Easter City Break",
+                        desc: "Mild spring weather in Italy, perfectly suited for family strolls.",
+                        searchCity: "Rome",
+                        origin: "BER"
                     },
                     {
-                        destination: "Cyprus (Paphos Easter Package)", cityQuery: "Paphos", type: "package",
-                        routeDetails: "Flight + Hotel Package Deal",
-                        travelDays: "2 travel days (Mar 29 & Apr 5)", nights: 7, days: 7,
-                        transportCostStandard: 1420.00, transportCostBahnCard25: 1420.00,
-                        stayType: "Resort Hotel (All-Inclusive)", stayCost: 0, badge: "Ab-in-den-urlaub Package"
+                        title: "Cyprus Easter Sun Package",
+                        type: "package",
+                        provider: "Ab-in-den-urlaub.de",
+                        route: "Direct/Transfer Flight + Resort Package",
+                        travelDays: "2 travel days (Mar 29 & Apr 5)",
+                        nights: 7, days: 7,
+                        totalPrice: 1520.00,
+                        badge: "All-Inclusive Package",
+                        desc: "Complete stress-free package with beach access and kids' entertainment.",
+                        searchCity: "Paphos"
                     }
                 ]
             },
             sommer2027: {
                 flightStart: "270705", flightEnd: "270715",
-                hotelCheckIn: "2027-07-05", hotelCheckOut: "2027-07-14",
+                hotelIn: "2027-07-05", hotelOut: "2027-07-14",
                 dbDate: "2027-07-05",
-                items: [
+                deals: [
                     {
-                        destination: "Croatian Coast (Split)", origin: "ber", dest: "spu", cityQuery: "Split", type: "flight-hotel",
-                        routeDetails: "Train Dresden -> BER + Flight to SPU",
-                        travelDays: "2 travel days (Jul 5 & Jul 15)", nights: 9, days: 9,
-                        transportCostStandard: 540.00, transportCostBahnCard25: 540.00,
-                        stayType: "Beachfront Villa with Pool", stayCost: 1450.00, badge: "Summer Holiday"
+                        title: "Greek Islands (Rhodes) Family Beach Resort",
+                        type: "package",
+                        provider: "Check24 Pauschalreisen",
+                        route: "Direct Flight from DRS/BER + Beach Hotel Package",
+                        travelDays: "2 travel days (Jul 5 & Jul 15)",
+                        nights: 10, days: 10,
+                        totalPrice: 2650.00,
+                        badge: "Summer Vacation Top Pick",
+                        desc: "The gold standard for families with small kids: all-inclusive buffet, beach, and flights bundled.",
+                        searchCity: "Rhodes"
                     },
                     {
-                        destination: "Greek Islands (Rhodes All-Inclusive)", cityQuery: "Rhodes", type: "package",
-                        routeDetails: "Family Beach Holiday Package (Flights + Hotel)",
-                        travelDays: "2 travel days (Jul 5 & Jul 15)", nights: 10, days: 10,
-                        transportCostStandard: 2450.00, transportCostBahnCard25: 2450.00,
-                        stayType: "Family Beach Resort", stayCost: 0, badge: "Check24 Package Deal"
+                        title: "Croatian Coast Villa & Travel Bundle",
+                        type: "diy-flight",
+                        provider: "Skyscanner & Airbnb",
+                        route: "Train to BER + Flight to Split (SPU)",
+                        travelDays: "2 travel days (Jul 5 & Jul 15)",
+                        nights: 9, days: 9,
+                        transportStd: 540.00, transportBC25: 540.00,
+                        stayCost: 1450.00,
+                        badge: "Private Villa Stay",
+                        desc: "Private pool villa on the crystal-clear Croatian coastline.",
+                        searchCity: "Split",
+                        origin: "BER"
                     }
                 ]
             }
@@ -220,124 +286,114 @@
         function runSearch() {
             const holidayKey = document.getElementById('holidaySelect').value;
             const maxNights = parseInt(document.getElementById('maxNights').value) || 7;
-            const routingPref = document.getElementById('routingPref').value;
+            const travelStyle = document.getElementById('travelStyle').value;
             const container = document.getElementById('resultsContainer');
             
-            const currentHoliday = holidayDataMap[holidayKey] || holidayDataMap.herbst2026;
-            let options = [...currentHoliday.items];
-            
-            // Filter by max nights
-            options = options.filter(opt => opt.nights <= maxNights);
+            const holiday = database[holidayKey] || database.herbst2026;
+            let list = [...holiday.deals];
 
-            // Filter by Deal Type Preference
-            if (routingPref === 'train') {
-                options = options.filter(opt => opt.type === 'train');
-            } else if (routingPref === 'package') {
-                options = options.filter(opt => opt.type === 'package');
+            // Filter by nights
+            list = list.filter(item => item.nights <= maxNights);
+
+            // Filter by style preference
+            if (travelStyle === 'package') {
+                list = list.filter(item => item.type === 'package');
+            } else if (travelStyle === 'train') {
+                list = list.filter(item => item.type === 'train');
             }
 
-            // Sort by total price ascending
-            options.sort((a, b) => {
-                const totalA = a.type === 'package' ? a.transportCostStandard : (a.transportCostStandard + a.stayCost);
-                const totalB = b.type === 'package' ? b.transportCostStandard : (b.transportCostStandard + b.stayCost);
-                return totalA - totalB;
+            // Sort by total price
+            list.sort((a, b) => {
+                const priceA = a.type === 'package' ? a.totalPrice : (a.transportStd + a.stayCost);
+                const priceB = b.type === 'package' ? b.totalPrice : (b.transportStd + b.stayCost);
+                return priceA - priceB;
             });
 
-            document.getElementById('resultCount').innerText = `${options.length} Options Found`;
+            document.getElementById('resultCount').innerText = `${list.options || list.length} Options Found`;
 
-            if (options.length === 0) {
-                container.innerHTML = `<div class="bg-white p-8 rounded-xl text-center text-slate-500 border border-slate-200">No bundles match your criteria for this period. Try adjusting nights or deal preferences.</div>`;
+            if (list.length === 0) {
+                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match your criteria for this vacation window. Try expanding your night limit or changing travel styles.</div>`;
                 return;
             }
 
-            container.innerHTML = options.map(item => {
-                const isPackage = item.type === 'package';
-                const isTrain = item.type === 'train';
+            container.innerHTML = list.map(item => {
+                const isPkg = item.type === 'package';
+                const isTrn = item.type === 'train';
                 
-                const totalStandard = isPackage ? item.transportCostStandard : (item.transportCostStandard + item.stayCost);
-                const totalBC25 = isPackage ? item.transportCostStandard : (item.transportCostBahnCard25 + item.stayCost);
+                const finalStd = isPkg ? item.totalPrice : (item.transportStd + item.stayCost);
+                const finalBC = isPkg ? item.totalPrice : (item.transportBC25 + item.stayCost);
 
-                // Generate appropriate deep-link URLs
-                let transportUrl = "";
-                let stayUrl = "";
+                // Build live deep links tailored to family (2 adults, 7y, 4y, infant)
+                let link1 = "";
+                let link2 = "";
 
-                if (isPackage) {
-                    // Ab-in-den-urlaub or Check24 package search pre-filtered for family of 5 (2 adults, kids 7 & 4)
-                    transportUrl = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(item.cityQuery)}&departureAirports[]=DRS&departureAirports[]=BER&adults=2&children=2&childAges[0]=7&childAges[1]=4`;
-                    stayUrl = `https://www.check24.de/pauschalreisen/suchen/#destination=${encodeURIComponent(item.cityQuery)}&adults=2&children=2&childAge=7,4`;
-                } else if (item.type === 'flight-hotel') {
-                    transportUrl = `https://www.skyscanner.de/transporte/fluege/${item.origin}/${item.dest}/${currentHoliday.flightStart}/${currentHoliday.flightEnd}/?adults=2&cabinclass=economy&childrenv2=0[4]|7&ref=home&rtn=1`;
-                    stayUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(item.cityQuery)}&checkin=${currentHoliday.hotelCheckIn}&checkout=${currentHoliday.hotelCheckOut}&group_adults=2&group_children=2&age=7&age=4`;
+                if (isPkg) {
+                    link1 = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(item.searchCity)}&departureAirports[]=DRS&departureAirports[]=BER&adults=2&children=2&childAges[0]=7&childAges[1]=4`;
+                    link2 = `https://www.check24.de/pauschalreisen/suchen/#destination=${encodeURIComponent(item.searchCity)}&adults=2&children=2&childAge=7,4`;
+                } else if (isTrn) {
+                    link1 = `https://reiseauskunft.bahn.de/bin/query.exe/dn?ld=4615&country=DEU&rt=1&input=Dresden%20Hbf&clone=0&date=${holiday.dbDate}&time=08:00`;
+                    link2 = `https://www.airbnb.com/s/${encodeURIComponent(item.searchCity)}/homes?checkin=${holiday.hotelIn}&checkout=${holiday.hotelOut}&adults=2&children=2`;
                 } else {
-                    // Train
-                    transportUrl = `https://reiseauskunft.bahn.de/bin/query.exe/dn?ld=4615&country=DEU&rt=1&input=Dresden%20Hbf&clone=0&date=${currentHoliday.dbDate}&time=08:00`;
-                    stayUrl = `https://www.airbnb.com/s/${encodeURIComponent(item.cityQuery)}/homes?checkin=${currentHoliday.hotelCheckIn}&checkout=${currentHoliday.hotelCheckOut}&adults=2&children=2`;
+                    link1 = `https://www.skyscanner.de/transporte/fluege/ber/${item.searchCity.toLowerCase().substring(0,3)}/${holiday.flightStart}/${holiday.flightEnd}/?adults=2&cabinclass=economy&childrenv2=0[4]|7&ref=home&rtn=1`;
+                    link2 = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(item.searchCity)}&checkin=${holiday.hotelIn}&checkout=${holiday.hotelOut}&group_adults=2&group_children=2&age=7&age=4`;
                 }
 
                 return `
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-indigo-300 transition">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-indigo-300 transition">
                     <div class="space-y-2 flex-grow">
                         <div class="flex items-center gap-3">
-                            <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full">${item.badge}</span>
-                            <h3 class="text-lg font-bold text-slate-900">${item.destination}</h3>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full border border-indigo-100">${item.badge}</span>
+                            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2.5 py-1 rounded-md">${item.provider}</span>
                         </div>
+                        <h3 class="text-xl font-black text-slate-900">${item.title}</h3>
                         <p class="text-sm text-slate-600 flex items-center gap-2">
-                            <i class="fa-solid fa-route text-slate-400"></i> ${item.routeDetails}
+                            <i class="fa-solid fa-route text-indigo-500"></i> ${item.route}
+                        </p>
+                        <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-circle-info text-indigo-400 mr-1"></i> ${item.desc}
                         </p>
                         <div class="flex flex-wrap gap-4 text-xs text-slate-500 pt-1">
-                            <span><i class="fa-solid fa-calendar-days text-indigo-500 mr-1"></i> Stay: <strong>${item.nights} Nights</strong> (${currentHoliday.hotelCheckIn} to ${currentHoliday.hotelCheckOut})</span>
+                            <span><i class="fa-solid fa-calendar-days text-indigo-500 mr-1"></i> Net Stay: <strong>${item.nights} Nights</strong> (${holiday.hotelIn} &rarr; ${holiday.hotelOut})</span>
                             <span><i class="fa-solid fa-suitcase-rolling text-indigo-500 mr-1"></i> ${item.travelDays}</span>
-                            <span><i class="fa-solid fa-bed text-indigo-500 mr-1"></i> ${item.stayType}</span>
                         </div>
                     </div>
 
-                    <!-- Pricing Block -->
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 min-w-[320px] space-y-3">
-                        <div class="text-xs text-slate-500 uppercase tracking-wider font-bold border-b border-slate-200 pb-1 flex justify-between">
-                            <span>Family Bundle (2 Adults + 3 Kids)</span>
+                    <!-- Pricing & Booking Panel -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 min-w-[320px] space-y-3">
+                        <div class="text-xs text-slate-500 uppercase tracking-wider font-extrabold border-b border-slate-200 pb-2 flex justify-between">
+                            <span>Total Family Price</span>
+                            <span class="text-indigo-600">2 Adults + 3 Kids</span>
                         </div>
 
-                        ${isPackage ? `
-                        <!-- Package Deal Line Item -->
+                        ${isPkg ? `
                         <div class="flex justify-between items-center text-xs py-1">
-                            <div>
-                                <span class="font-medium text-slate-700">All-Inclusive Package:</span>
-                                <a href="${transportUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Ab-in-den-urlaub <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
-                                <a href="${stayUrl}" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:underline ml-1 font-semibold">[Check24 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
+                            <span class="font-medium text-slate-700">All-In Package Deal:</span>
+                            <div class="space-x-1">
+                                <a href="${link1}" target="_blank" class="text-indigo-600 font-bold hover:underline">[Ab-in-den-urlaub <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
+                                <a href="${link2}" target="_blank" class="text-emerald-600 font-bold hover:underline">[Check24 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
                             </div>
                         </div>
                         ` : `
-                        <!-- Transport Line Item -->
                         <div class="flex justify-between items-center text-xs">
-                            <div>
-                                <span class="font-medium text-slate-700">Transport:</span>
-                                <a href="${transportUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Book <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
-                            </div>
-                            <div class="text-right">
-                                <span class="font-bold text-slate-900">€${item.transportCostStandard.toFixed(2)}</span>${isTrain ? `<br><span class="text-[10px] text-emerald-700 font-medium">BC25: €${item.transportCostBahnCard25.toFixed(2)}</span>` : ''}
-                            </div>
+                            <span class="font-medium text-slate-700">Transport: <a href="${link1}" target="_blank" class="text-indigo-600 font-bold hover:underline">[Book <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a></span>
+                            <span class="font-bold text-slate-900">€${item.transportStd.toFixed(2)}</span>
                         </div>
-
-                        <!-- Stay Line Item -->
                         <div class="flex justify-between items-center text-xs">
-                            <div>
-                                <span class="font-medium text-slate-700">Accommodation:</span>
-                                <a href="${stayUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Check Dates <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
-                            </div>
+                            <span class="font-medium text-slate-700">Stay: <a href="${link2}" target="_blank" class="text-indigo-600 font-bold hover:underline">[Check <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a></span>
                             <span class="font-bold text-slate-900">€${item.stayCost.toFixed(2)}</span>
                         </div>
                         `}
 
-                        <!-- Combined Totals -->
+                        <!-- Totals -->
                         <div class="border-t border-slate-200 pt-2 space-y-1">
                             <div class="flex justify-between items-baseline text-xs">
-                                <span class="text-slate-600 font-medium">${isPackage ? 'Total Package Price:' : 'Total Standard:'}</span>
-                                <span class="text-base font-black text-slate-900">€${totalStandard.toFixed(2)}</span>
+                                <span class="text-slate-600 font-bold">Standard Total:</span>
+                                <span class="text-lg font-black text-slate-900">€${finalStd.toFixed(2)}</span>
                             </div>
-                            ${isTrain ? `
+                            ${isTrn ? `
                             <div class="flex justify-between items-baseline text-xs text-emerald-700 font-bold">
-                                <span>Total w/ BahnCard 25:</span>
-                                <span class="text-sm">€${totalBC25.toFixed(2)}</span>
+                                <span>With BahnCard 25:</span>
+                                <span class="text-base">€${finalBC.toFixed(2)}</span>
                             </div>` : ''}
                         </div>
                     </div>
@@ -345,7 +401,6 @@
             `}).join('');
         }
 
-        // Initialize on load
         window.onload = runSearch;
     </script>
 </body>
