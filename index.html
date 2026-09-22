@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhad's Global Family Travel Portal (No Price Limits)</title>
+    <title>Farhad's Live Global Travel Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,20 +15,19 @@
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-earth-americas"></i> Global Check24 Deal Aggregator (No Budget Caps)
+                    <i class="fa-solid fa-earth-americas"></i> Live Worldwide Search Constructor
                 </div>
                 <h1 class="text-2xl md:text-3xl font-black mt-1">
-                    Worldwide Family Package Finder
+                    Global Family Travel Hub
                 </h1>
                 <p class="text-slate-400 text-xs mt-1">
-                    Displaying every country and worldwide destination sorted lowest to highest price.
+                    No price limits. Search any country or worldwide destination live.
                 </p>
             </div>
             
-            <!-- Clean Profile Badge -->
             <div class="bg-slate-800/90 px-4 py-3 rounded-xl border border-slate-700 text-xs shadow-inner">
                 <p class="font-bold text-indigo-300 flex items-center gap-1">
-                    <i class="fa-solid fa-users"></i> Config: 2 Adults + 3 Kids (Dresden / BER Hub)
+                    <i class="fa-solid fa-users"></i> Config: 2 Adults + 3 Kids (Dresden Hub)
                 </p>
             </div>
         </div>
@@ -37,223 +36,100 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full space-y-6">
 
-        <!-- Controls Section -->
-        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <!-- Universal Search Box -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Region Filter</label>
-                <select id="regionFilter" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" onchange="renderGlobalDeals()">
-                    <option value="all">🌍 All Countries & Worldwide Destinations</option>
-                    <option value="europe">🇪🇺 Europe & Mediterranean</option>
-                    <option value="longhaul">🌴 Long-Haul & Tropical Worldwide</option>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Type Any Country or City Worldwide</label>
+                <input type="text" id="globalSearchInput" value="Thailand" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="e.g. Japan, Greece, Maldives, USA">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Departure Hub</label>
+                <select id="hubInput" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                    <option value="DRS">Dresden Airport (DRS)</option>
+                    <option value="BER">Berlin Brandenburg (BER)</option>
+                    <option value="PRG">Prague (PRG)</option>
                 </select>
             </div>
 
-            <div class="flex items-end">
-                <button onclick="renderGlobalDeals()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
-                    <i class="fa-solid fa-rotate"></i> Refresh Worldwide Feeds
+            <div>
+                <button onclick="launchGlobalSearch()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3.5 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search Live Inventories
                 </button>
             </div>
         </section>
 
-        <!-- Results Display Header -->
-        <div class="flex justify-between items-center px-2">
-            <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-globe text-emerald-600"></i> Global Offers (Sorted Lowest Price)
+        <!-- Popular Worldwide Quick Shortcuts -->
+        <div class="space-y-4">
+            <h2 class="text-lg font-black text-slate-900 flex items-center gap-2 px-2">
+                <i class="fa-solid fa-fire text-amber-500"></i> Popular Worldwide Destinations (Click to Search Live)
             </h2>
-            <span id="resultCount" class="text-xs bg-emerald-50 text-emerald-700 font-bold px-3 py-1.5 rounded-full border border-emerald-100">0 Offers</span>
-        </div>
 
-        <!-- Deal Cards Grid -->
-        <div id="resultsContainer" class="grid grid-cols-1 gap-6">
-            <!-- Dynamically populated -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button onclick="searchQuick('Japan')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇯🇵 Japan</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Tokyo, Kyoto & Culture</div>
+                </button>
+                <button onclick="searchQuick('Greece')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇬🇷 Greece</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Islands & Resorts</div>
+                </button>
+                <button onclick="searchQuick('Thailand')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇹🇭 Thailand</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Phuket, Bangkok & Beaches</div>
+                </button>
+                <button onclick="searchQuick('United States')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇺🇸 United States</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Florida & California</div>
+                </button>
+                <button onclick="searchQuick('Spain')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇪🇸 Spain</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Mallorca, Tenerife & Costa</div>
+                </button>
+                <button onclick="searchQuick('Turkey')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇹🇷 Turkey</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Antalya & Turkish Riviera</div>
+                </button>
+                <button onclick="searchQuick('Maldives')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇲🇻 Maldives</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Overwater Bungalows</div>
+                </button>
+                <button onclick="searchQuick('Egypt')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
+                    <div class="font-bold text-slate-900">🇪🇬 Egypt</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Hurghada & Sharm el-Sheikh</div>
+                </button>
+            </div>
         </div>
 
     </main>
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-xs mt-12">
-        <p>Farhad's Global Travel Hub &bull; Powered by Check24.de Worldwide Inventory</p>
+        <p>Farhad's Global Travel Hub &bull; Direct Live Search Constructor</p>
     </footer>
 
     <!-- Script Logic -->
     <script>
-        const globalDeals = [
-            {
-                title: "Bulgaria (Golden Sands) Family Beach Holiday",
-                region: "europe",
-                route: "Flight from Dresden/BER + Family Hotel Package",
-                duration: "7 Nights / 8 Days",
-                price: 980.00,
-                badge: "🇪🇺 Budget European Choice",
-                desc: "Extremely affordable family beaches along the Black Sea coast with full board options.",
-                searchCity: "Goldstrand"
-            },
-            {
-                title: "Antalya All-Inclusive Beach Resort (Turkey)",
-                region: "europe",
-                route: "Direct Flight from DRS/BER + Resort + Transfers",
-                duration: "7 Nights / 8 Days",
-                price: 1350.00,
-                badge: "🏆 #1 Best Value",
-                desc: "Top family resort with water slides, all meals, drinks, and baggage included.",
-                searchCity: "Antalya"
-            },
-            {
-                title: "Mallorca Family Suite Package (Spain)",
-                region: "europe",
-                route: "Flight from Berlin (BER) + 4-Star Hotel",
-                duration: "7 Nights / 8 Days",
-                price: 1590.00,
-                badge: "🇪🇸 Spain Top Family Pick",
-                desc: "Short flight time from BER, children's pool, and apartment-style family suites.",
-                searchCity: "Palma de Mallorca"
-            },
-            {
-                title: "Greek Islands (Rhodes) Beach Resort",
-                region: "europe",
-                route: "Flight from BER/DRS + All-Inclusive Beach Hotel",
-                duration: "10 Nights / 11 Days",
-                price: 2450.00,
-                badge: "🇬🇷 Greek Island Sun",
-                desc: "Family beach resort with dedicated kids club and seaside access.",
-                searchCity: "Rhodes"
-            },
-            {
-                title: "Tenerife Winter Sun Package (Canary Islands)",
-                region: "europe",
-                route: "Flight from Berlin (BER) + Heated Pool Resort",
-                duration: "10 Nights / 11 Days",
-                price: 2890.00,
-                badge: "🏝️ Atlantic Sunshine",
-                desc: "Escape to warm Atlantic weather with complete tour operator bundle.",
-                searchCity: "Tenerife"
-            },
-            {
-                title: "Abu Dhabi Luxury Family Escape (UAE)",
-                region: "longhaul",
-                route: "Direct/Transfer Flight + 5-Star Resort",
-                duration: "7 Nights / 8 Days",
-                price: 3250.00,
-                badge: "🇦🇪 Middle East Luxury",
-                desc: "World-class theme parks (Yas Waterworld), luxury family amenities, and sunshine.",
-                searchCity: "Abu Dhabi"
-            },
-            {
-                title: "Phuket Tropical Beach Paradise (Thailand)",
-                region: "longhaul",
-                route: "Long-haul Flight + Beach Resort & Spa",
-                duration: "10 Nights / 11 Days",
-                price: 3890.00,
-                badge: "🇹🇭 Exotic Asian Holiday",
-                desc: "Experience Thai hospitality, white sand beaches, and lush tropical gardens.",
-                searchCity: "Phuket"
-            },
-            {
-                title: "Turkish Riviera Ultra Luxury Resort",
-                region: "europe",
-                route: "Direct Flight + 5-Star Ultra All-Inclusive",
-                duration: "14 Nights / 15 Days",
-                price: 4100.00,
-                badge: "💎 European Premium Pick",
-                desc: "Ultimate 5-star relaxation, premium dining, and professional childcare services.",
-                searchCity: "Belek"
-            },
-            {
-                title: "Dominican Republic All-Inclusive Beach Dream",
-                region: "longhaul",
-                route: "Direct Long-haul Flight + Caribbean Resort",
-                duration: "9 Nights / 10 Days",
-                price: 4650.00,
-                badge: "🇩🇴 Caribbean Paradise",
-                desc: "Palm-fringed white beaches, crystal clear turquoise water, and all-inclusive luxury.",
-                searchCity: "Punta Cana"
-            },
-            {
-                title: "Maldives Private Island Family Bungalow",
-                region: "longhaul",
-                route: "International Flight + Speedboat + Beach Bungalow",
-                duration: "7 Nights / 8 Days",
-                price: 5400.00,
-                badge: "🇲🇻 Ultimate Bucket List",
-                desc: "Crystal clear lagoons, coral reefs, and unforgettable overwater family experiences.",
-                searchCity: "Male"
-            },
-            {
-                title: "Mexico (Riviera Maya/Cancun) Resort",
-                region: "longhaul",
-                route: "Long-haul Flight + 5-Star All-Inclusive",
-                duration: "10 Nights / 11 Days",
-                price: 5950.00,
-                badge: "🇲🇽 Mayan Coast Adventure",
-                desc: "Ancient culture, stunning white sand beaches, and world-class family resorts.",
-                searchCity: "Cancun"
-            }
-        ];
-
-        function renderGlobalDeals() {
-            const region = document.getElementById('regionFilter').value;
-            const container = document.getElementById('resultsContainer');
-
-            let filtered = [...globalDeals];
-
-            if (region !== 'all') {
-                filtered = filtered.filter(item => item.region === region);
-            }
-
-            // Sort strictly lowest to highest price across all ranges
-            filtered.sort((a, b) => a.price - b.price);
-
-            document.getElementById('resultCount').innerText = `${filtered.length} Worldwide Offers Found`;
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match this region filter.</div>`;
-                return;
-            }
-
-            container.innerHTML = filtered.map(item => {
-                const check24Url = `https://www.check24.de/pauschalreisen/suchen?destination=${encodeURIComponent(item.searchCity)}`;
-
-                return `
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-emerald-300 transition">
-                    <div class="space-y-2 flex-grow">
-                        <div class="flex items-center gap-3">
-                            <span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">${item.badge}</span>
-                            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2.5 py-1 rounded-md">Check24.de Worldwide</span>
-                        </div>
-                        <h3 class="text-xl font-black text-slate-900">${item.title}</h3>
-                        <p class="text-sm text-slate-600 flex items-center gap-2">
-                            <i class="fa-solid fa-route text-emerald-500"></i> ${item.route}
-                        </p>
-                        <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                            <i class="fa-solid fa-circle-info text-emerald-400 mr-1"></i> ${item.desc}
-                        </p>
-                        <div class="flex flex-wrap gap-4 text-xs text-slate-500 pt-1">
-                            <span><i class="fa-solid fa-moon text-emerald-500 mr-1"></i> Duration: <strong>${item.duration}</strong></span>
-                        </div>
-                    </div>
-
-                    <!-- Pricing & Check24 Link Panel -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 min-w-[300px] space-y-3">
-                        <div class="text-xs text-slate-500 uppercase tracking-wider font-extrabold border-b border-slate-200 pb-2 flex justify-between">
-                            <span>Check24 Total Family Price</span>
-                        </div>
-
-                        <div class="flex justify-between items-baseline">
-                            <span class="text-slate-600 font-bold text-xs">Estimated Total:</span>
-                            <span class="text-2xl font-black text-slate-900">€${item.price.toFixed(2)}</span>
-                        </div>
-
-                        <div class="pt-2">
-                            <a href="${check24Url}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center block transition shadow-sm">
-                                View Worldwide Deal on Check24.de <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `}).join('');
+        function launchGlobalSearch() {
+            const query = document.getElementById('globalSearchInput').value.trim() || "Thailand";
+            executeSearch(query);
         }
 
-        window.onload = renderGlobalDeals;
+        function searchQuick(countryName) {
+            document.getElementById('globalSearchInput').value = countryName;
+            executeSearch(countryName);
+        }
+
+        function executeSearch(destination) {
+            // Opens live search pages directly on major platforms with zero price caps
+            const check24Url = `https://www.check24.de/pauschalreisen/suchen?destination=${encodeURIComponent(destination)}`;
+            const abInDenUrlaubUrl = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(destination)}`;
+            const skyscannerUrl = `https://www.skyscanner.de`;
+
+            window.open(check24Url, '_blank');
+            window.open(abInDenUrlaubUrl, '_blank');
+            window.open(skyscannerUrl, '_blank');
+        }
     </script>
 </body>
 </html>
