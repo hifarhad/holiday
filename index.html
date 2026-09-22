@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dresden Family Travel Portal (Precise DB & Flight Tariffs)</title>
+    <title>Dresden Family Travel Portal (Dynamic Search Link Generator)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,11 +18,11 @@
                     <i class="fa-solid fa-compass text-indigo-400"></i> Farhad's Family Voyage Planner
                 </h1>
                 <p class="text-indigo-200 text-sm mt-1">
-                    Accurate Tariff Engine: DB Free Kids (Ages 0-14) vs Flight Seat Allocations
+                    Dynamic Link Generator: Passes Exact Dates & Passenger Ages to Providers
                 </p>
             </div>
             <div class="mt-4 md:mt-0 bg-indigo-800/80 px-4 py-3 rounded-lg border border-indigo-700 text-xs md:text-sm">
-                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Exact Family Setup (DOBs Verified):</p>
+                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Setup (DOBs Verified):</p>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1 text-slate-100">
                     <div>Adult 1: <span class="text-indigo-300">30.03.1985</span> (41 yrs)</div>
                     <div>Adult 2: <span class="text-indigo-300">13.01.1994</span> (32 yrs)</div>
@@ -40,13 +40,13 @@
         <!-- Controls / Filters Section -->
         <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-6">
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Holiday Window (Starting Herbst 2026)</label>
-                <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                    <option value="herbst2026">Herbstferien 2026 (Oct 12 - Oct 24)</option>
-                    <option value="weihnachten2026">Weihnachtsferien 2026/27 (Dec 23 - Jan 2)</option>
-                    <option value="winter2027">Winterferien 2027 (Feb 8 - Feb 13)</option>
-                    <option value="oster2027">Osterferien 2027 (Mar 29 - Apr 10)</option>
-                    <option value="sommer2027">Sommerferien 2027 (Jul 5 - Aug 18)</option>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Holiday Window</label>
+                <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="updateDates()">
+                    <option value="herbst2026" data-start="2026-10-12" data-end="2026-10-24">Herbstferien 2026 (Oct 12 - Oct 24)</option>
+                    <option value="weihnachten2026" data-start="2026-12-23" data-end="2027-01-02">Weihnachtsferien 2026/27 (Dec 23 - Jan 2)</option>
+                    <option value="winter2027" data-start="2027-02-08" data-end="2027-02-13">Winterferien 2027 (Feb 8 - Feb 13)</option>
+                    <option value="oster2027" data-start="2027-03-29" data-end="2027-04-10">Osterferien 2027 (Mar 29 - Apr 10)</option>
+                    <option value="sommer2027" data-start="2027-07-05" data-end="2027-08-18">Sommerferien 2027 (Jul 5 - Aug 18)</option>
                 </select>
             </div>
 
@@ -67,7 +67,7 @@
 
             <div class="flex items-end">
                 <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-3 rounded-lg transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-magnifying-glass"></i> Calculate Accurate Totals
+                    <i class="fa-solid fa-magnifying-glass"></i> Generate Live Links
                 </button>
             </div>
         </section>
@@ -76,7 +76,7 @@
         <section class="space-y-4">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-tags text-indigo-600"></i> Family Bundles (Accurate DB Child & Infant Rules Applied)
+                    <i class="fa-solid fa-tags text-indigo-600"></i> Family Bundles with Dynamic Deep-Links
                 </h2>
                 <span id="resultCount" class="text-xs bg-slate-200 text-slate-700 px-3 py-1 rounded-full font-medium">Options Found</span>
             </div>
@@ -96,161 +96,174 @@
     <!-- JavaScript Data and Logic -->
     <script>
         const mockData = {
-            herbst2026: [
-                {
-                    destination: "Prague, Czech Republic",
-                    transportType: "Train (EuroCity from Dresden Hbf)",
-                    routeDetails: "Direct EC Dresden Hbf -> Praha hl.n. (~2h 15m). Kids 4 & 7 ride FREE on DB!",
-                    travelDays: "2 travel days (Oct 12 & Oct 19)",
-                    nights: 6,
-                    days: 6,
-                    // DB train fare for 2 adults only (kids 4 & 7 + infant 4m are €0.00 on DB)
-                    transportCostStandard: 79.90,
-                    transportCostBahnCard25: 59.92,
-                    stayType: "Family Apartment (Airbnb style)",
-                    stayCost: 520.00,
-                    badge: "Best DB Train Deal",
-                    transportUrl: "https://www.bahn.com",
-                    stayUrl: "https://www.airbnb.com"
-                },
-                {
-                    destination: "Berlin & Brandenburg Lakes",
-                    transportType: "Train (DB Regional / ICE from Dresden Hbf)",
-                    routeDetails: "Direct ICE/RE Dresden Hbf -> Berlin Hbf (~2h). Kids free.",
-                    travelDays: "2 travel days (Oct 12 & Oct 18)",
-                    nights: 5,
-                    days: 5,
-                    transportCostStandard: 53.90,
-                    transportCostBahnCard25: 40.42,
-                    stayType: "Holiday Cottage (Ferienhaus)",
-                    stayCost: 450.00,
-                    badge: "Short Travel Time",
-                    transportUrl: "https://www.bahn.com",
-                    stayUrl: "https://www.airbnb.com"
-                },
-                {
-                    destination: "Vienna, Austria",
-                    transportType: "Train (EuroCity from Dresden Hbf)",
-                    routeDetails: "Direct EC Dresden Hbf -> Wien Hbf (~4h 45m). Kids free.",
-                    travelDays: "2 travel days (Oct 12 & Oct 19)",
-                    nights: 5,
-                    days: 5,
-                    transportCostStandard: 119.90,
-                    transportCostBahnCard25: 89.92,
-                    stayType: "Central Aparthotel",
-                    stayCost: 590.00,
-                    badge: "City Break",
-                    transportUrl: "https://www.bahn.com",
-                    stayUrl: "https://www.booking.com"
-                },
-                {
-                    destination: "Mallorca (Palma), Spain",
-                    transportType: "Flight from Berlin (BER) + Airport Transfer",
-                    routeDetails: "DB to BER + Flight (Requires seats for 2 Adults + 7y + 4y child)",
-                    travelDays: "2 travel days (Oct 12 & Oct 19)",
-                    nights: 7,
-                    days: 7,
-                    // Flight requires paying for 2 adults + 1 child seat (7y) + 1 child seat (4y) + infant fee
-                    transportCostStandard: 380.00,
-                    transportCostBahnCard25: 380.00,
-                    stayType: "Beach Resort Hotel (Family Suite)",
-                    stayCost: 680.00,
-                    badge: "Lowest Flight Bundle",
-                    transportUrl: "https://www.skyscanner.de",
-                    stayUrl: "https://www.booking.com"
-                },
-                {
-                    destination: "Antalya, Turkey",
-                    transportType: "Direct Flight from Dresden Airport (DRS)",
-                    routeDetails: "Direct flight from DRS (~3h)",
-                    travelDays: "2 travel days (Oct 12 & Oct 20)",
-                    nights: 7,
-                    days: 7,
-                    transportCostStandard: 620.00,
-                    transportCostBahnCard25: 620.00,
-                    stayType: "All-Inclusive Family Resort",
-                    stayCost: 950.00,
-                    badge: "Direct from DRS",
-                    transportUrl: "https://www.skyscanner.de",
-                    stayUrl: "https://www.booking.com"
-                }
-            ],
-            weihnachten2026: [
-                {
-                    destination: "Nuremberg & Bavarian Alps",
-                    transportType: "Train (DB ICE via Nürnberg)",
-                    routeDetails: "Dresden Hbf -> Nürnberg Hbf (~3h 30m). Kids free.",
-                    travelDays: "2 travel days (Dec 23 & Dec 30)",
-                    nights: 6,
-                    days: 6,
-                    transportCostStandard: 99.90,
-                    transportCostBahnCard25: 74.92,
-                    stayType: "Traditional Alpine Chalet",
-                    stayCost: 820.00,
-                    badge: "Winter Wonderland",
-                    transportUrl: "https://www.bahn.com",
-                    stayUrl: "https://www.airbnb.com"
-                }
-            ],
-            winter2027: [
-                {
-                    destination: "Erzgebirge (Mountains near Dresden)",
-                    transportType: "Train & Regional Transit from Dresden Hbf",
-                    routeDetails: "DB Regio / MRB (~1h 15m). Kids free.",
-                    travelDays: "2 travel days (Feb 8 & Feb 13)",
-                    nights: 4,
-                    days: 4,
-                    transportCostStandard: 38.00,
-                    transportCostBahnCard25: 28.50,
-                    stayType: "Ski & Sled Family Hotel",
-                    stayCost: 440.00,
-                    badge: "Quick Getaway",
-                    transportUrl: "https://www.bahn.com",
-                    stayUrl: "https://www.booking.com"
-                }
-            ],
-            oster2027: [
-                {
-                    destination: "Rome, Italy",
-                    transportType: "Flight from Berlin (BER)",
-                    routeDetails: "DB to BER + Direct Flight to FCO",
-                    travelDays: "2 travel days (Mar 29 & Apr 5)",
-                    nights: 6,
-                    days: 6,
-                    transportCostStandard: 410.00,
-                    transportCostBahnCard25: 410.00,
-                    stayType: "Central Holiday Apartment",
-                    stayCost: 790.00,
-                    badge: "Spring Culture Trip",
-                    transportUrl: "https://www.skyscanner.de",
-                    stayUrl: "https://www.airbnb.com"
-                }
-            ],
-            sommer2027: [
-                {
-                    destination: "Croatian Coast (Split / Makarska)",
-                    transportType: "Flight from Berlin (BER)",
-                    routeDetails: "Train Dresden -> BER + Flight to SPU",
-                    travelDays: "2 travel days (Jul 5 & Jul 15)",
-                    nights: 9,
-                    days: 9,
-                    transportCostStandard: 540.00,
-                    transportCostBahnCard25: 540.00,
-                    stayType: "Beachfront Villa with Pool",
-                    stayCost: 1450.00,
-                    badge: "Summer Holiday",
-                    transportUrl: "https://www.skyscanner.de",
-                    stayUrl: "https://www.booking.com"
-                }
-            ]
+            herbst2026: {
+                startDate: "261012", // YYMMDD format for Skyscanner
+                endDate: "261019",
+                dbQueryDate: "2026-10-12",
+                items: [
+                    {
+                        destination: "Prague, Czech Republic",
+                        isFlight: false,
+                        routeDetails: "Direct EC Dresden Hbf -> Praha hl.n. (~2h 15m). Kids 4 & 7 ride FREE on DB!",
+                        travelDays: "2 travel days (Oct 12 & Oct 19)",
+                        nights: 6,
+                        days: 6,
+                        transportCostStandard: 79.90,
+                        transportCostBahnCard25: 59.92,
+                        stayType: "Family Apartment (Airbnb style)",
+                        stayCost: 520.00,
+                        badge: "Best DB Train Deal",
+                        stayUrl: "https://www.airbnb.com"
+                    },
+                    {
+                        destination: "Berlin & Brandenburg Lakes",
+                        isFlight: false,
+                        routeDetails: "Direct ICE/RE Dresden Hbf -> Berlin Hbf (~2h). Kids free.",
+                        travelDays: "2 travel days (Oct 12 & Oct 18)",
+                        nights: 5,
+                        days: 5,
+                        transportCostStandard: 53.90,
+                        transportCostBahnCard25: 40.42,
+                        stayType: "Holiday Cottage (Ferienhaus)",
+                        stayCost: 450.00,
+                        badge: "Short Travel Time",
+                        stayUrl: "https://www.airbnb.com"
+                    },
+                    {
+                        destination: "Mallorca (Palma), Spain",
+                        isFlight: true,
+                        originCode: "ber",
+                        destCode: "pmi",
+                        routeDetails: "DB to BER + Flight (Passes 2 Adults + 7y + 4y child parameters)",
+                        travelDays: "2 travel days (Oct 12 & Oct 19)",
+                        nights: 7,
+                        days: 7,
+                        transportCostStandard: 380.00,
+                        transportCostBahnCard25: 380.00,
+                        stayType: "Beach Resort Hotel (Family Suite)",
+                        stayCost: 680.00,
+                        badge: "Lowest Flight Bundle",
+                        stayUrl: "https://www.booking.com"
+                    },
+                    {
+                        destination: "Antalya, Turkey",
+                        isFlight: true,
+                        originCode: "drs",
+                        destCode: "ayt",
+                        routeDetails: "Direct flight from DRS (~3h)",
+                        travelDays: "2 travel days (Oct 12 & Oct 20)",
+                        nights: 7,
+                        days: 7,
+                        transportCostStandard: 620.00,
+                        transportCostBahnCard25: 620.00,
+                        stayType: "All-Inclusive Family Resort",
+                        stayCost: 950.00,
+                        badge: "Direct from DRS",
+                        stayUrl: "https://www.booking.com"
+                    }
+                ]
+            },
+            weihnachten2026: {
+                startDate: "261223",
+                endDate: "261230",
+                dbQueryDate: "2026-12-23",
+                items: [
+                    {
+                        destination: "Nuremberg & Bavarian Alps",
+                        isFlight: false,
+                        routeDetails: "Dresden Hbf -> Nürnberg Hbf (~3h 30m). Kids free.",
+                        travelDays: "2 travel days (Dec 23 & Dec 30)",
+                        nights: 6,
+                        days: 6,
+                        transportCostStandard: 99.90,
+                        transportCostBahnCard25: 74.92,
+                        stayType: "Traditional Alpine Chalet",
+                        stayCost: 820.00,
+                        badge: "Winter Wonderland",
+                        stayUrl: "https://www.airbnb.com"
+                    }
+                ]
+            },
+            winter2027: {
+                startDate: "270208",
+                endDate: "270213",
+                dbQueryDate: "2027-02-08",
+                items: [
+                    {
+                        destination: "Erzgebirge (Mountains near Dresden)",
+                        isFlight: false,
+                        routeDetails: "DB Regio / MRB (~1h 15m). Kids free.",
+                        travelDays: "2 travel days (Feb 8 & Feb 13)",
+                        nights: 4,
+                        days: 4,
+                        transportCostStandard: 38.00,
+                        transportCostBahnCard25: 28.50,
+                        stayType: "Ski & Sled Family Hotel",
+                        stayCost: 440.00,
+                        badge: "Quick Getaway",
+                        stayUrl: "https://www.booking.com"
+                    }
+                ]
+            },
+            oster2027: {
+                startDate: "270329",
+                endDate: "270405",
+                dbQueryDate: "2027-03-29",
+                items: [
+                    {
+                        destination: "Rome, Italy",
+                        isFlight: true,
+                        originCode: "ber",
+                        destCode: "fco",
+                        routeDetails: "DB to BER + Direct Flight to FCO",
+                        travelDays: "2 travel days (Mar 29 & Apr 5)",
+                        nights: 6,
+                        days: 6,
+                        transportCostStandard: 410.00,
+                        transportCostBahnCard25: 410.00,
+                        stayType: "Central Holiday Apartment",
+                        stayCost: 790.00,
+                        badge: "Spring Culture Trip",
+                        stayUrl: "https://www.airbnb.com"
+                    }
+                ]
+            },
+            sommer2027: {
+                startDate: "270705",
+                endDate: "270715",
+                dbQueryDate: "2027-07-05",
+                items: [
+                    {
+                        destination: "Croatian Coast (Split / Makarska)",
+                        isFlight: true,
+                        originCode: "ber",
+                        destCode: "spu",
+                        routeDetails: "Train Dresden -> BER + Flight to SPU",
+                        travelDays: "2 travel days (Jul 5 & Jul 15)",
+                        nights: 9,
+                        days: 9,
+                        transportCostStandard: 540.00,
+                        transportCostBahnCard25: 540.00,
+                        stayType: "Beachfront Villa with Pool",
+                        stayCost: 1450.00,
+                        badge: "Summer Holiday",
+                        stayUrl: "https://www.booking.com"
+                    }
+                ]
+            }
         };
+
+        function updateDates() {
+            runSearch();
+        }
 
         function runSearch() {
             const holidayKey = document.getElementById('holidaySelect').value;
             const maxNights = parseInt(document.getElementById('maxNights').value) || 7;
             const container = document.getElementById('resultsContainer');
             
-            let options = mockData[holidayKey] || mockData.herbst2026;
+            const holidayData = mockData[holidayKey] || mockData.herbst2026;
+            let options = holidayData.items;
             
             // Filter by nights
             options = options.filter(opt => opt.nights <= maxNights);
@@ -268,7 +281,17 @@
             container.innerHTML = options.map(item => {
                 const totalStandard = item.transportCostStandard + item.stayCost;
                 const totalBC25 = item.transportCostBahnCard25 + item.stayCost;
-                const isTrain = item.transportType.includes('Train');
+                const isTrain = !item.isFlight;
+
+                // Dynamically construct search URL matching your exact parameters
+                let transportUrl = "";
+                if (item.isFlight) {
+                    // Skyscanner URL format incorporating 2 adults and children ages 7 and 4: childrenv2=0[4]|7
+                    transportUrl = `https://www.skyscanner.de/transporte/fluege/${item.originCode}/${item.destCode}/${holidayData.startDate}/${holidayData.endDate}/?adults=2&cabinclass=economy&childrenv2=0[4]|7&ref=home&rtn=1`;
+                } else {
+                    // DB Bahn query link from Dresden Hbf
+                    transportUrl = `https://reiseauskunft.bahn.de/bin/query.exe/dn?ld=4615&country=DEU&rt=1&input=Dresden%20Hbf&clone=0&date=${holidayData.dbQueryDate}&time=08:00`;
+                }
 
                 return `
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-indigo-300 transition">
@@ -298,7 +321,7 @@
                         <div class="flex justify-between items-center text-xs">
                             <div>
                                 <span class="font-medium text-slate-700">Transport:</span>
-                                <a href="${item.transportUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Book <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
+                                <a href="${transportUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Book <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
                             </div>
                             <div class="text-right">
                                 <span class="font-bold text-slate-900">€${item.transportCostStandard.toFixed(2)}</span>
