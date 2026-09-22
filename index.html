@@ -18,11 +18,11 @@
                     <i class="fa-solid fa-compass text-indigo-400"></i> Dresden Family Voyage Planner
                 </h1>
                 <p class="text-indigo-200 text-sm mt-1">
-                    Custom Multi-Modal Search: Trains (Dresden Hbf) | Flights (DRS / BER / PRG) | Hotels & Airbnbs
+                    Multi-Modal Search: Trains (Dresden Hbf) | Flights (DRS / BER / PRG) | Hotels & Airbnbs
                 </p>
             </div>
             <div class="mt-4 md:mt-0 bg-indigo-800/80 px-4 py-3 rounded-lg border border-indigo-700 text-xs md:text-sm">
-                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Configuration & Ages:</p>
+                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Configuration & Ages (Calculated for 2026/2027):</p>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1 text-slate-100">
                     <div>Adult 1: <span class="text-indigo-300">41 yrs</span> (30.03.1985)</div>
                     <div>Adult 2: <span class="text-indigo-300">32 yrs</span> (13.01.1994)</div>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="flex items-end">
-                <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-3 rounded-lg transition duration-150 flex items-center justify-center gap-2 shadow-sm">
+                <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-3 rounded-lg transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-magnifying-glass"></i> Find Cheapest Bundles
                 </button>
             </div>
@@ -110,7 +110,8 @@
                     stayCost: 520,
                     totalStandard: 638,
                     totalBC25: 608.50,
-                    badge: "Best Train Deal"
+                    badge: "Best Train Deal",
+                    bookingUrl: "https://www.bahn.com"
                 },
                 {
                     destination: "Mallorca (Palma), Spain",
@@ -125,7 +126,8 @@
                     stayCost: 680,
                     totalStandard: 1020,
                     totalBC25: 995.00,
-                    badge: "Lowest Flight Bundle"
+                    badge: "Lowest Flight Bundle",
+                    bookingUrl: "https://www.skyscanner.de"
                 },
                 {
                     destination: "Vienna, Austria",
@@ -140,7 +142,8 @@
                     stayCost: 590,
                     totalStandard: 748,
                     totalBC25: 708.50,
-                    badge: "City Break"
+                    badge: "City Break",
+                    bookingUrl: "https://www.bahn.com"
                 },
                 {
                     destination: "Berlin & Brandenburg Lakes",
@@ -155,7 +158,8 @@
                     stayCost: 450,
                     totalStandard: 526,
                     totalBC25: 507.00,
-                    badge: "Short Travel Time"
+                    badge: "Short Travel Time",
+                    bookingUrl: "https://www.bahn.com"
                 },
                 {
                     destination: "Antalya, Turkey",
@@ -170,7 +174,8 @@
                     stayCost: 950,
                     totalStandard: 1530,
                     totalBC25: 1530.00,
-                    badge: "Direct from DRS"
+                    badge: "Direct from DRS",
+                    bookingUrl: "https://www.skyscanner.de"
                 }
             ],
             weihnachten2026: [
@@ -187,7 +192,8 @@
                     stayCost: 820,
                     totalStandard: 960,
                     totalBC25: 925.00,
-                    badge: "Winter Wonderland"
+                    badge: "Winter Wonderland",
+                    bookingUrl: "https://www.bahn.com"
                 },
                 {
                     destination: "Barcelona, Spain",
@@ -202,7 +208,8 @@
                     stayCost: 740,
                     totalStandard: 1150,
                     totalBC25: 1150.00,
-                    badge: "Mild Winter Sun"
+                    badge: "Mild Winter Sun",
+                    bookingUrl: "https://www.skyscanner.de"
                 }
             ],
             winter2027: [
@@ -219,7 +226,8 @@
                     stayCost: 440,
                     totalStandard: 482,
                     totalBC25: 471.50,
-                    badge: "Quick Getaway"
+                    badge: "Quick Getaway",
+                    bookingUrl: "https://www.bahn.com"
                 }
             ],
             oster2027: [
@@ -236,7 +244,8 @@
                     stayCost: 790,
                     totalStandard: 1180,
                     totalBC25: 1155.00,
-                    badge: "Spring Culture Trip"
+                    badge: "Spring Culture Trip",
+                    bookingUrl: "https://www.skyscanner.de"
                 }
             ],
             sommer2027: [
@@ -253,7 +262,8 @@
                     stayCost: 1450,
                     totalStandard: 1970,
                     totalBC25: 1945.00,
-                    badge: "Summer Holiday"
+                    badge: "Summer Holiday",
+                    bookingUrl: "https://www.skyscanner.de"
                 }
             ]
         };
@@ -265,7 +275,7 @@
             
             let options = mockData[holidayKey] || mockData.herbst2026;
             
-            // Filter by nights if needed
+            // Filter by nights
             options = options.filter(opt => opt.nights <= maxNights);
 
             // Sort by lowest standard total price
@@ -306,9 +316,11 @@
                             <span class="text-xs">With BahnCard 25:</span>
                             <span class="text-lg font-bold">€${item.totalBC25.toFixed(2)}</span>
                         </div>` : ''}
-                        <button onclick="alert('Viewing full itinerary breakdown for ${item.destination}!')" class="w-full mt-2 bg-slate-900 hover:bg-indigo-600 text-white text-xs font-medium py-2 rounded-lg transition">
-                            View Detailed Breakdown
-                        </button>
+                        
+                        <!-- Open Deal in New Tab Link Button -->
+                        <a href="${item.bookingUrl}" target="_blank" rel="noopener noreferrer" class="w-full mt-2 inline-block bg-slate-900 hover:bg-indigo-600 text-white text-xs font-medium py-2 px-4 rounded-lg transition text-center">
+                            Open Deal in New Tab <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                        </a>
                     </div>
                 </div>
             `).join('');
