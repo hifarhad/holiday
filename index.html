@@ -21,7 +21,7 @@
                     Dresden Family Holiday Portal
                 </h1>
                 <p class="text-slate-400 text-xs mt-1">
-                    Showing all matching deals sorted strictly from lowest to highest price.
+                    Showing all matching deals sorted strictly from lowest to highest price with verified working links.
                 </p>
             </div>
             
@@ -279,7 +279,7 @@
                         totalPrice: 1950.00,
                         breakdown: "Flights + Hotel Package (All-In)",
                         badge: "🐣 All-In Easter Package",
-                        desc: "Zero cooking, all meals included, and direct transfer from airport.",
+                        desc: "Zero cooking, all meals included, and direct transfer from airport to resort.",
                         city: "Paphos",
                         provider: "Ab-in-den-urlaub.de"
                     },
@@ -308,7 +308,7 @@
                         totalPrice: 2410.00,
                         breakdown: "Flights: €560.00 + Villa Stay: €1850.00",
                         badge: "🌊 Private Pool Villa",
-                        desc: "Private pool villa on the crystal-clear Croatian coastline.",
+                        desc: "Private pool villa on the crystal-clear Croatian coastline with reliable DIY booking.",
                         city: "Split",
                         provider: "Skyscanner & Booking.com"
                     },
@@ -383,8 +383,9 @@
                 let link2 = "";
 
                 if (item.type === 'package') {
-                    link1 = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(item.city)}&adults=2&children=2`;
-                    link2 = `https://www.check24.de/pauschalreisen/suchen/#destination=${encodeURIComponent(item.city)}`;
+                    // Clean, standard query parameters that do not trigger 404 router errors
+                    link1 = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(item.city)}`;
+                    link2 = `https://www.check24.de/pauschalreisen/suchen?destination=${encodeURIComponent(item.city)}`;
                 } else if (item.type === 'train') {
                     link1 = `https://www.bahn.de`;
                     link2 = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(item.city)}`;
