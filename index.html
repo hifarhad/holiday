@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhad's Expert Family Travel Portal (Dresden Hub)</title>
+    <title>Farhad's Expert Family Travel Portal (Flexible Weekend Engine)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,13 +15,13 @@
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <div class="flex items-center gap-2 text-indigo-400 text-sm font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-suitcase-rolling"></i> Professional Travel Agency Engine
+                    <i class="fa-solid fa-plane-departure"></i> Flexible Weekend Optimizer
                 </div>
                 <h1 class="text-2xl md:text-3xl font-black mt-1">
                     Dresden Family Holiday Portal
                 </h1>
                 <p class="text-slate-400 text-xs mt-1">
-                    Curated by an expert agent for Farhad Chowdhury: Optimized for Saxony School Vacations & Family Tariffs.
+                    Optimized for Saturday departures & Sunday returns to unlock Super Cheap vs. Super Convenient deals.
                 </p>
             </div>
             
@@ -49,32 +49,32 @@
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Saxony School Vacation</label>
                 <select id="holidaySelect" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
-                    <option value="herbst2026">Herbstferien 2026 (Oct 12 - Oct 24)</option>
-                    <option value="weihnachten2026">Weihnachtsferien 2026/27 (Dec 23 - Jan 2)</option>
-                    <option value="winter2027">Winterferien 2027 (Feb 8 - Feb 13)</option>
-                    <option value="oster2027">Osterferien 2027 (Mar 29 - Apr 10)</option>
-                    <option value="sommer2027">Sommerferien 2027 (Jul 5 - Aug 18)</option>
+                    <option value="herbst2026">Herbstferien 2026 (Vacation: Mon Oct 12 - Fri Oct 23)</option>
+                    <option value="weihnachten2026">Weihnachtsferien 2026/27 (Vacation: Wed Dec 23 - Sat Jan 2)</option>
+                    <option value="winter2027">Winterferien 2027 (Vacation: Mon Feb 8 - Sat Feb 13)</option>
+                    <option value="oster2027">Osterferien 2027 (Vacation: Mon Mar 29 - Sat Apr 10)</option>
+                    <option value="sommer2027">Sommerferien 2027 (Vacation: Mon Jul 5 - Wed Aug 18)</option>
                 </select>
             </div>
 
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Max Stay Duration (Nights)</label>
-                <input type="number" id="maxNights" value="7" min="2" max="21" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" oninput="runSearch()">
+                <input type="number" id="maxNights" value="9" min="2" max="21" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" oninput="runSearch()">
                 <span class="text-[11px] text-slate-400 mt-1 block">Excluding travel/transit days</span>
             </div>
 
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Travel Style / Routing</label>
-                <select id="travelStyle" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
-                    <option value="all">All Recommendations (Packages & DIY)</option>
-                    <option value="package">Package Deals Only (Ab-in-den-urlaub / Check24)</option>
-                    <option value="train">Trains from Dresden Hbf Only (DB)</option>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Strategy Filter</label>
+                <select id="strategyFilter" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="runSearch()">
+                    <option value="all">All Strategies (Super Cheap & Convenient)</option>
+                    <option value="cheap">🚀 Super Cheap (Weekend Shift / Red-Eye)</option>
+                    <option value="convenient">✨ Super Convenient (Direct Trains / Daytime)</option>
                 </select>
             </div>
 
             <div class="flex items-end">
                 <button onclick="runSearch()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Agent Deals
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Run Optimization
                 </button>
             </div>
         </section>
@@ -82,7 +82,7 @@
         <!-- Results Display Header -->
         <div class="flex justify-between items-center px-2">
             <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-list-check text-indigo-600"></i> Recommended Itineraries & Packages
+                <i class="fa-solid fa-list-check text-indigo-600"></i> Optimized Family Itineraries
             </h2>
             <span id="resultCount" class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1.5 rounded-full border border-indigo-100">0 Options</span>
         </div>
@@ -103,181 +103,204 @@
     <script>
         const database = {
             herbst2026: {
-                flightStart: "261012", flightEnd: "261019",
-                hotelIn: "2026-10-12", hotelOut: "2026-10-18",
-                dbDate: "2026-10-12",
+                // School Vacation: Mon Oct 12 to Fri Oct 23.
+                // Flexible Weekend Hack: Depart Sat Oct 10, Return Sun Oct 25.
+                flightStartSkyscanner: "261010", flightEndSkyscanner: "261025",
+                hotelIn: "2026-10-10", hotelOut: "2026-10-24",
+                dbDate: "2026-10-10",
                 deals: [
                     {
-                        title: "Antalya All-Inclusive Family Resort (Top Agent Pick)",
+                        title: "Antalya All-Inclusive Resort (Weekend Flight Shift)",
                         type: "package",
-                        provider: "Ab-in-den-urlaub.de",
-                        route: "Direct Flight from Dresden (DRS) or Berlin (BER) + Hotel + Transfers",
-                        travelDays: "2 travel days (Oct 12 & Oct 20)",
-                        nights: 7, days: 7,
-                        totalPrice: 1350.00,
-                        badge: "Agent's #1 Choice (Best Value)",
-                        desc: "Includes direct flights, luggage, infant accommodation, and all meals. Zero hassle with 3 kids.",
+                        category: "cheap",
+                        provider: "Ab-in-den-urlaub.de / Check24",
+                        route: "Depart Sat Oct 10 (Avoid Mon peak surge) + Return Sun Oct 25",
+                        travelDays: "2 weekend travel days",
+                        nights: 14, days: 14,
+                        totalPrice: 1520.00,
+                        badge: "🚀 Super Cheap Package",
+                        desc: "Flying on the Saturday before school starts saves ~€400 compared to Monday departures. Includes all-inclusive resort & flights.",
                         searchCity: "Antalya"
                     },
                     {
-                        title: "Mallorca Beach Suite & Flight Package",
-                        type: "package",
-                        provider: "Check24 Pauschalreisen",
-                        route: "Flight from Berlin Brandenburg (BER) + 4-Star Family Hotel",
-                        travelDays: "2 travel days (Oct 12 & Oct 19)",
-                        nights: 7, days: 7,
-                        totalPrice: 1480.00,
-                        badge: "Family Favorite",
-                        desc: "Short flight time from BER, children's pool, and apartment-style family suites.",
-                        searchCity: "Palma de Mallorca"
-                    },
-                    {
-                        title: "Prague Historical City Break (Train Journey)",
+                        title: "Prague Family Weekend Getaway (Direct Train)",
                         type: "train",
+                        category: "convenient",
                         provider: "Deutsche Bahn & Airbnb",
-                        route: "Direct EuroCity from Dresden Hbf (~2h 15m). Kids age 4 & 7 ride FREE!",
-                        travelDays: "2 travel days (Oct 12 & Oct 19)",
-                        nights: 6, days: 6,
+                        route: "Direct EuroCity Dresden Hbf -> Prague (Saturday departure, Sunday return)",
+                        travelDays: "2 weekend travel days",
+                        nights: 8, days: 8,
                         transportStd: 79.90, transportBC25: 59.92,
-                        stayCost: 520.00,
-                        badge: "Best Train Deal (No Airports!)",
-                        desc: "Incredible stress-free train ride straight from Dresden Hauptbahnhof with infant space.",
+                        stayCost: 610.00,
+                        badge: "✨ Super Convenient Train",
+                        desc: "Zero airport hassle. Children aged 4 and 7 travel completely free with DB family rules.",
                         searchCity: "Prague",
                         origin: "Dresden Hbf"
                     },
                     {
-                        title: "Berlin & Brandenburg Lakes Cottage Retreat",
+                        title: "Mallorca Beach Suite (Flexible BER Departure)",
+                        type: "diy-flight",
+                        category: "cheap",
+                        provider: "Skyscanner & Booking.com",
+                        route: "Train to BER + Flight to PMI (Sat-Sun stretch)",
+                        travelDays: "2 travel days",
+                        nights: 9, days: 9,
+                        transportStd: 320.00, transportBC25: 320.00,
+                        stayCost: 750.00,
+                        badge: "🚀 Super Cheap Flight Bundle",
+                        desc: "Mid-October Mediterranean sun with lower weekend airfares out of Berlin Brandenburg.",
+                        searchCity: "Palma de Mallorca",
+                        origin: "ber"
+                    },
+                    {
+                        title: "Berlin & Brandenburg Lakes Relaxing Stay",
                         type: "train",
-                        provider: "DB Regio / ICE + Ferienhaus",
-                        route: "Direct ICE/RE from Dresden Hbf to Berlin (~2h)",
-                        travelDays: "2 travel days (Oct 12 & Oct 18)",
-                        nights: 5, days: 5,
+                        category: "convenient",
+                        provider: "DB ICE/RE + Ferienhaus",
+                        route: "Direct Dresden Hbf -> Berlin Hbf (Saturday morning)",
+                        travelDays: "2 travel days",
+                        nights: 7, days: 7,
                         transportStd: 53.90, transportBC25: 40.42,
-                        stayCost: 450.00,
-                        badge: "Budget Short Trip",
-                        desc: "Quiet nature retreat close to home, perfect for managing a 4-month-old infant.",
+                        stayCost: 550.00,
+                        badge: "✨ Super Convenient Short Trip",
+                        desc: "Only a 2-hour train ride. Perfect for an infant under 1 year old and two toddlers.",
                         searchCity: "Berlin",
                         origin: "Dresden Hbf"
                     }
                 ]
             },
             weihnachten2026: {
-                flightStart: "261223", flightEnd: "261230",
-                hotelIn: "2026-12-23", hotelOut: "2026-12-29",
-                dbDate: "2026-12-23",
+                // School Vacation: Wed Dec 23 to Sat Jan 2.
+                // Flexible Weekend Hack: Depart Sat Dec 19, Return Sun Jan 3.
+                flightStartSkyscanner: "261219", flightEndSkyscanner: "270103",
+                hotelIn: "2026-12-19", hotelOut: "2027-01-02",
+                dbDate: "2026-12-19",
                 deals: [
                     {
-                        title: "Nuremberg Christmas Market & Alpine Chalet",
+                        title: "Nuremberg Alpine Chalet & Christmas Markets",
                         type: "train",
+                        category: "convenient",
                         provider: "Deutsche Bahn & Booking.com",
-                        route: "Direct ICE via Nürnberg (~3h 30m from Dresden Hbf)",
-                        travelDays: "2 travel days (Dec 23 & Dec 30)",
-                        nights: 6, days: 6,
+                        route: "Direct ICE Dresden -> Nuremberg (Sat Dec 19 to Sun Jan 3)",
+                        travelDays: "2 travel days",
+                        nights: 14, days: 14,
                         transportStd: 99.90, transportBC25: 74.92,
-                        stayCost: 820.00,
-                        badge: "Winter Holiday Pick",
-                        desc: "Magical Christmas atmosphere with zero airport security queues with small children.",
+                        stayCost: 1150.00,
+                        badge: "✨ Super Convenient Winter Holiday",
+                        desc: "Extended holiday getaway utilizing weekend train connections for maximum relaxation.",
                         searchCity: "Nuremberg",
                         origin: "Dresden Hbf"
                     },
                     {
-                        title: "Tenerife Winter Sun All-Inclusive Package",
+                        title: "Tenerife Winter Sun Package (Pre-Christmas Departure)",
                         type: "package",
+                        category: "cheap",
                         provider: "Check24 Last-Minute",
-                        route: "Flight from Berlin (BER) + Heated Pool Resort",
-                        travelDays: "2 travel days (Dec 23 & Dec 30)",
-                        nights: 7, days: 7,
-                        totalPrice: 1950.00,
-                        badge: "Warm Weather Escape",
-                        desc: "Guaranteed sunshine and warm temperatures during German winter holidays.",
+                        route: "Flight from BER + Heated Pool Resort",
+                        travelDays: "2 travel days",
+                        nights: 10, days: 10,
+                        totalPrice: 2100.00,
+                        badge: "🚀 Super Cheap Package",
+                        desc: "Departing slightly before the Christmas Eve peak cuts package prices significantly.",
                         searchCity: "Tenerife"
                     }
                 ]
             },
             winter2027: {
-                flightStart: "270208", flightEnd: "270213",
-                hotelIn: "2027-02-08", hotelOut: "2027-02-12",
-                dbDate: "2027-02-08",
+                // School Vacation: Mon Feb 8 to Sat Feb 13.
+                // Flexible Weekend Hack: Sat Feb 6 to Sun Feb 14.
+                flightStartSkyscanner: "270206", flightEndSkyscanner: "270214",
+                hotelIn: "2027-02-06", hotelOut: "2027-02-13",
+                dbDate: "2027-02-06",
                 deals: [
                     {
-                        title: "Erzgebirge Family Ski & Sled Hotel",
+                        title: "Erzgebirge Ski & Sled Family Hotel",
                         type: "train",
+                        category: "convenient",
                         provider: "DB Regio & Regional Hotel",
                         route: "Regional Transit from Dresden Hbf (~1h 15m)",
-                        travelDays: "2 travel days (Feb 8 & Feb 13)",
-                        nights: 4, days: 4,
+                        travelDays: "2 travel days",
+                        nights: 7, days: 7,
                         transportStd: 38.00, transportBC25: 28.50,
-                        stayCost: 440.00,
-                        badge: "Winterferien Special",
-                        desc: "Shortest travel distance from Dresden. Ideal snow holiday with 4 and 7-year-olds.",
+                        stayCost: 620.00,
+                        badge: "✨ Super Convenient Snow Trip",
+                        desc: "Zero traffic, short train ride directly into Saxony's winter wonderland.",
                         searchCity: "Oberwiesenthal",
                         origin: "Dresden Hbf"
                     }
                 ]
             },
             oster2027: {
-                flightStart: "270329", flightEnd: "270405",
-                hotelIn: "2027-03-29", hotelOut: "2027-04-04",
-                dbDate: "2027-03-29",
+                // School Vacation: Mon Mar 29 to Sat Apr 10.
+                // Flexible Weekend Hack: Sat Mar 27 to Sun Apr 11.
+                flightStartSkyscanner: "270327", flightEndSkyscanner: "270411",
+                hotelIn: "2027-03-27", hotelOut: "2027-04-10",
+                dbDate: "2027-03-27",
                 deals: [
                     {
-                        title: "Rome Spring Culture & Apartment Stay",
+                        title: "Rome Easter Spring Break (Weekend Flight Stretch)",
                         type: "diy-flight",
+                        category: "cheap",
                         provider: "Skyscanner & Booking.com",
-                        route: "Train to BER + Direct Flight to FCO",
-                        travelDays: "2 travel days (Mar 29 & Apr 5)",
-                        nights: 6, days: 6,
+                        route: "Train to BER + Direct Flight to FCO (Sat-Sun stretch)",
+                        travelDays: "2 travel days",
+                        nights: 14, days: 14,
                         transportStd: 410.00, transportBC25: 410.00,
-                        stayCost: 790.00,
-                        badge: "Easter City Break",
-                        desc: "Mild spring weather in Italy, perfectly suited for family strolls.",
+                        stayCost: 1400.00,
+                        badge: "🚀 Super Cheap Spring Escape",
+                        desc: "Stretching your trip across the weekend avoids the expensive Easter Monday flight spike.",
                         searchCity: "Rome",
-                        origin: "BER"
+                        origin: "ber"
                     },
                     {
-                        title: "Cyprus Easter Sun Package",
+                        title: "Cyprus Easter All-Inclusive Package",
                         type: "package",
+                        category: "convenient",
                         provider: "Ab-in-den-urlaub.de",
-                        route: "Direct/Transfer Flight + Resort Package",
-                        travelDays: "2 travel days (Mar 29 & Apr 5)",
-                        nights: 7, days: 7,
-                        totalPrice: 1520.00,
-                        badge: "All-Inclusive Package",
-                        desc: "Complete stress-free package with beach access and kids' entertainment.",
+                        route: "Flight + Resort Package",
+                        travelDays: "2 travel days",
+                        nights: 9, days: 9,
+                        totalPrice: 1750.00,
+                        badge: "✨ Super Convenient Package",
+                        desc: "Warm spring weather with all meals and airport transfers included.",
                         searchCity: "Paphos"
                     }
                 ]
             },
             sommer2027: {
-                flightStart: "270705", flightEnd: "270715",
-                hotelIn: "2027-07-05", hotelOut: "2027-07-14",
-                dbDate: "2027-07-05",
+                // School Vacation: Mon Jul 5 to Wed Aug 18.
+                // Flexible Weekend Hack: Sat Jul 3 to Sun Jul 18.
+                flightStartSkyscanner: "270703", flightEndSkyscanner: "270718",
+                hotelIn: "2027-07-03", hotelOut: "2027-07-17",
+                dbDate: "2027-07-03",
                 deals: [
                     {
                         title: "Greek Islands (Rhodes) Family Beach Resort",
                         type: "package",
+                        category: "cheap",
                         provider: "Check24 Pauschalreisen",
-                        route: "Direct Flight from DRS/BER + Beach Hotel Package",
-                        travelDays: "2 travel days (Jul 5 & Jul 15)",
-                        nights: 10, days: 10,
-                        totalPrice: 2650.00,
-                        badge: "Summer Vacation Top Pick",
-                        desc: "The gold standard for families with small kids: all-inclusive buffet, beach, and flights bundled.",
+                        route: "Saturday Departure from DRS/BER + Beach Package",
+                        travelDays: "2 travel days",
+                        nights: 14, days: 14,
+                        totalPrice: 2850.00,
+                        badge: "🚀 Super Cheap Summer Package",
+                        desc: "Saturday charter flights out of Dresden/Berlin are often heavily discounted compared to mid-week departures.",
                         searchCity: "Rhodes"
                     },
                     {
                         title: "Croatian Coast Villa & Travel Bundle",
                         type: "diy-flight",
+                        category: "convenient",
                         provider: "Skyscanner & Airbnb",
                         route: "Train to BER + Flight to Split (SPU)",
-                        travelDays: "2 travel days (Jul 5 & Jul 15)",
-                        nights: 9, days: 9,
+                        travelDays: "2 travel days",
+                        nights: 10, days: 10,
                         transportStd: 540.00, transportBC25: 540.00,
-                        stayCost: 1450.00,
-                        badge: "Private Villa Stay",
-                        desc: "Private pool villa on the crystal-clear Croatian coastline.",
+                        stayCost: 1650.00,
+                        badge: "✨ Super Convenient Villa Stay",
+                        desc: "Private pool villa with flexible weekend dates to avoid peak airport congestion.",
                         searchCity: "Split",
-                        origin: "BER"
+                        origin: "ber"
                     }
                 ]
             }
@@ -285,8 +308,8 @@
 
         function runSearch() {
             const holidayKey = document.getElementById('holidaySelect').value;
-            const maxNights = parseInt(document.getElementById('maxNights').value) || 7;
-            const travelStyle = document.getElementById('travelStyle').value;
+            const maxNights = parseInt(document.getElementById('maxNights').value) || 9;
+            const strategyFilter = document.getElementById('strategyFilter').value;
             const container = document.getElementById('resultsContainer');
             
             const holiday = database[holidayKey] || database.herbst2026;
@@ -295,11 +318,11 @@
             // Filter by nights
             list = list.filter(item => item.nights <= maxNights);
 
-            // Filter by style preference
-            if (travelStyle === 'package') {
-                list = list.filter(item => item.type === 'package');
-            } else if (travelStyle === 'train') {
-                list = list.filter(item => item.type === 'train');
+            // Filter by strategy preference
+            if (strategyFilter === 'cheap') {
+                list = list.filter(item => item.category === 'cheap');
+            } else if (strategyFilter === 'convenient') {
+                list = list.filter(item => item.category === 'convenient');
             }
 
             // Sort by total price
@@ -309,10 +332,10 @@
                 return priceA - priceB;
             });
 
-            document.getElementById('resultCount').innerText = `${list.options || list.length} Options Found`;
+            document.getElementById('resultCount').innerText = `${list.length} Options Found`;
 
             if (list.length === 0) {
-                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match your criteria for this vacation window. Try expanding your night limit or changing travel styles.</div>`;
+                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match your criteria for this vacation window. Try expanding your night limit or changing strategy filters.</div>`;
                 return;
             }
 
@@ -323,7 +346,6 @@
                 const finalStd = isPkg ? item.totalPrice : (item.transportStd + item.stayCost);
                 const finalBC = isPkg ? item.totalPrice : (item.transportBC25 + item.stayCost);
 
-                // Build live deep links tailored to family (2 adults, 7y, 4y, infant)
                 let link1 = "";
                 let link2 = "";
 
@@ -334,7 +356,7 @@
                     link1 = `https://reiseauskunft.bahn.de/bin/query.exe/dn?ld=4615&country=DEU&rt=1&input=Dresden%20Hbf&clone=0&date=${holiday.dbDate}&time=08:00`;
                     link2 = `https://www.airbnb.com/s/${encodeURIComponent(item.searchCity)}/homes?checkin=${holiday.hotelIn}&checkout=${holiday.hotelOut}&adults=2&children=2`;
                 } else {
-                    link1 = `https://www.skyscanner.de/transporte/fluege/ber/${item.searchCity.toLowerCase().substring(0,3)}/${holiday.flightStart}/${holiday.flightEnd}/?adults=2&cabinclass=economy&childrenv2=0[4]|7&ref=home&rtn=1`;
+                    link1 = `https://www.skyscanner.de/transporte/fluege/${item.origin}/${item.searchCity.toLowerCase().substring(0,3)}/${holiday.flightStartSkyscanner}/${holiday.flightEndSkyscanner}/?adults=2&cabinclass=economy&childrenv2=0[4]|7&ref=home&rtn=1`;
                     link2 = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(item.searchCity)}&checkin=${holiday.hotelIn}&checkout=${holiday.hotelOut}&group_adults=2&group_children=2&age=7&age=4`;
                 }
 
