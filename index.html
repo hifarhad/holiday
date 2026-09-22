@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dresden Family Travel Portal (Multi-Modal & Budget Optimizer)</title>
+    <title>Dresden Family Travel Portal (Split Pricing & Multi-Modal)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,11 +18,11 @@
                     <i class="fa-solid fa-compass text-indigo-400"></i> Dresden Family Voyage Planner
                 </h1>
                 <p class="text-indigo-200 text-sm mt-1">
-                    Multi-Modal Search: Trains (Dresden Hbf) | Flights (DRS / BER / PRG) | Hotels & Airbnbs
+                    Multi-Modal Search with Independent Transport & Accommodation Price Splits
                 </p>
             </div>
             <div class="mt-4 md:mt-0 bg-indigo-800/80 px-4 py-3 rounded-lg border border-indigo-700 text-xs md:text-sm">
-                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Configuration & Ages (Calculated for 2026/2027):</p>
+                <p class="font-semibold text-indigo-200"><i class="fa-solid fa-users mr-1"></i> Family Configuration (Ages as of 2026/2027):</p>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1 text-slate-100">
                     <div>Adult 1: <span class="text-indigo-300">41 yrs</span> (30.03.1985)</div>
                     <div>Adult 2: <span class="text-indigo-300">32 yrs</span> (13.01.1994)</div>
@@ -76,7 +76,7 @@
         <section class="space-y-4">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-tags text-indigo-600"></i> Available Bundles (Sorted Lowest Price)
+                    <i class="fa-solid fa-tags text-indigo-600"></i> Available Bundles (Split Pricing & Links)
                 </h2>
                 <span id="resultCount" class="text-xs bg-slate-200 text-slate-700 px-3 py-1 rounded-full font-medium">5 Options Found</span>
             </div>
@@ -104,30 +104,28 @@
                     travelDays: "2 travel days (Oct 12 & Oct 19)",
                     nights: 6,
                     days: 6,
-                    transportCostStandard: 118,
+                    transportCostStandard: 118.00,
                     transportCostBahnCard25: 88.50,
                     stayType: "Family Apartment (Airbnb style)",
-                    stayCost: 520,
-                    totalStandard: 638,
-                    totalBC25: 608.50,
+                    stayCost: 520.00,
                     badge: "Best Train Deal",
-                    bookingUrl: "https://www.bahn.com"
+                    transportUrl: "https://www.bahn.com",
+                    stayUrl: "https://www.airbnb.com"
                 },
                 {
                     destination: "Mallorca (Palma), Spain",
-                    transportType: "Flight from Berlin (BER) + Airport Bus from Dresden",
+                    transportType: "Flight from Berlin (BER) + Airport Bus",
                     routeDetails: "DB Train Dresden -> BER (2h) + Direct Flight to PMI",
                     travelDays: "2 travel days (Oct 12 & Oct 19)",
                     nights: 7,
                     days: 7,
-                    transportCostStandard: 340,
+                    transportCostStandard: 340.00,
                     transportCostBahnCard25: 315.00,
                     stayType: "Beach Resort Hotel (Family Suite)",
-                    stayCost: 680,
-                    totalStandard: 1020,
-                    totalBC25: 995.00,
+                    stayCost: 680.00,
                     badge: "Lowest Flight Bundle",
-                    bookingUrl: "https://www.skyscanner.de"
+                    transportUrl: "https://www.skyscanner.de",
+                    stayUrl: "https://www.booking.com"
                 },
                 {
                     destination: "Vienna, Austria",
@@ -136,14 +134,13 @@
                     travelDays: "2 travel days (Oct 12 & Oct 19)",
                     nights: 5,
                     days: 5,
-                    transportCostStandard: 158,
+                    transportCostStandard: 158.00,
                     transportCostBahnCard25: 118.50,
                     stayType: "Central Aparthotel",
-                    stayCost: 590,
-                    totalStandard: 748,
-                    totalBC25: 708.50,
+                    stayCost: 590.00,
                     badge: "City Break",
-                    bookingUrl: "https://www.bahn.com"
+                    transportUrl: "https://www.bahn.com",
+                    stayUrl: "https://www.booking.com"
                 },
                 {
                     destination: "Berlin & Brandenburg Lakes",
@@ -152,14 +149,13 @@
                     travelDays: "2 travel days (Oct 12 & Oct 18)",
                     nights: 5,
                     days: 5,
-                    transportCostStandard: 76,
+                    transportCostStandard: 76.00,
                     transportCostBahnCard25: 57.00,
                     stayType: "Holiday Cottage (Ferienhaus)",
-                    stayCost: 450,
-                    totalStandard: 526,
-                    totalBC25: 507.00,
+                    stayCost: 450.00,
                     badge: "Short Travel Time",
-                    bookingUrl: "https://www.bahn.com"
+                    transportUrl: "https://www.bahn.com",
+                    stayUrl: "https://www.airbnb.com"
                 },
                 {
                     destination: "Antalya, Turkey",
@@ -168,14 +164,13 @@
                     travelDays: "2 travel days (Oct 12 & Oct 20)",
                     nights: 7,
                     days: 7,
-                    transportCostStandard: 580,
+                    transportCostStandard: 580.00,
                     transportCostBahnCard25: 580.00,
                     stayType: "All-Inclusive Family Resort",
-                    stayCost: 950,
-                    totalStandard: 1530,
-                    totalBC25: 1530.00,
+                    stayCost: 950.00,
                     badge: "Direct from DRS",
-                    bookingUrl: "https://www.skyscanner.de"
+                    transportUrl: "https://www.skyscanner.de",
+                    stayUrl: "https://www.booking.com"
                 }
             ],
             weihnachten2026: [
@@ -186,14 +181,13 @@
                     travelDays: "2 travel days (Dec 23 & Dec 30)",
                     nights: 6,
                     days: 6,
-                    transportCostStandard: 140,
+                    transportCostStandard: 140.00,
                     transportCostBahnCard25: 105.00,
                     stayType: "Traditional Alpine Chalet",
-                    stayCost: 820,
-                    totalStandard: 960,
-                    totalBC25: 925.00,
+                    stayCost: 820.00,
                     badge: "Winter Wonderland",
-                    bookingUrl: "https://www.bahn.com"
+                    transportUrl: "https://www.bahn.com",
+                    stayUrl: "https://www.airbnb.com"
                 },
                 {
                     destination: "Barcelona, Spain",
@@ -202,14 +196,13 @@
                     travelDays: "2 travel days (Dec 23 & Dec 30)",
                     nights: 6,
                     days: 6,
-                    transportCostStandard: 410,
+                    transportCostStandard: 410.00,
                     transportCostBahnCard25: 410.00,
                     stayType: "Family Apartment Eixample",
-                    stayCost: 740,
-                    totalStandard: 1150,
-                    totalBC25: 1150.00,
+                    stayCost: 740.00,
                     badge: "Mild Winter Sun",
-                    bookingUrl: "https://www.skyscanner.de"
+                    transportUrl: "https://www.skyscanner.de",
+                    stayUrl: "https://www.airbnb.com"
                 }
             ],
             winter2027: [
@@ -220,14 +213,13 @@
                     travelDays: "2 travel days (Feb 8 & Feb 13)",
                     nights: 4,
                     days: 4,
-                    transportCostStandard: 42,
+                    transportCostStandard: 42.00,
                     transportCostBahnCard25: 31.50,
                     stayType: "Ski & Sled Family Hotel",
-                    stayCost: 440,
-                    totalStandard: 482,
-                    totalBC25: 471.50,
+                    stayCost: 440.00,
                     badge: "Quick Getaway",
-                    bookingUrl: "https://www.bahn.com"
+                    transportUrl: "https://www.bahn.com",
+                    stayUrl: "https://www.booking.com"
                 }
             ],
             oster2027: [
@@ -238,14 +230,13 @@
                     travelDays: "2 travel days (Mar 29 & Apr 5)",
                     nights: 6,
                     days: 6,
-                    transportCostStandard: 390,
+                    transportCostStandard: 390.00,
                     transportCostBahnCard25: 365.00,
                     stayType: "Central Holiday Apartment",
-                    stayCost: 790,
-                    totalStandard: 1180,
-                    totalBC25: 1155.00,
+                    stayCost: 790.00,
                     badge: "Spring Culture Trip",
-                    bookingUrl: "https://www.skyscanner.de"
+                    transportUrl: "https://www.skyscanner.de",
+                    stayUrl: "https://www.airbnb.com"
                 }
             ],
             sommer2027: [
@@ -256,14 +247,13 @@
                     travelDays: "2 travel days (Jul 5 & Jul 15)",
                     nights: 9,
                     days: 9,
-                    transportCostStandard: 520,
+                    transportCostStandard: 520.00,
                     transportCostBahnCard25: 495.00,
                     stayType: "Beachfront Villa with Pool",
-                    stayCost: 1450,
-                    totalStandard: 1970,
-                    totalBC25: 1945.00,
+                    stayCost: 1450.00,
                     badge: "Summer Holiday",
-                    bookingUrl: "https://www.skyscanner.de"
+                    transportUrl: "https://www.skyscanner.de",
+                    stayUrl: "https://www.booking.com"
                 }
             ]
         };
@@ -278,8 +268,8 @@
             // Filter by nights
             options = options.filter(opt => opt.nights <= maxNights);
 
-            // Sort by lowest standard total price
-            options.sort((a, b) => a.totalStandard - b.totalStandard);
+            // Sort by total standard price (Transport Standard + Stay Cost)
+            options.sort((a, b) => (a.transportCostStandard + a.stayCost) - (b.transportCostStandard + b.stayCost));
 
             document.getElementById('resultCount').innerText = `${options.length} Options Found`;
 
@@ -288,7 +278,12 @@
                 return;
             }
 
-            container.innerHTML = options.map(item => `
+            container.innerHTML = options.map(item => {
+                const totalStandard = item.transportCostStandard + item.stayCost;
+                const totalBC25 = item.transportCostBahnCard25 + item.stayCost;
+                const isTrain = item.transportType.includes('Train');
+
+                return `
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-indigo-300 transition">
                     <div class="space-y-2 flex-grow">
                         <div class="flex items-center gap-3">
@@ -305,25 +300,49 @@
                         </div>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 min-w-[280px] text-right space-y-2">
-                        <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Total Bundle (2 Adults, 3 Kids)</div>
-                        <div class="flex justify-between items-baseline">
-                            <span class="text-xs text-slate-600">Standard Price:</span>
-                            <span class="text-xl font-black text-slate-900">€${item.totalStandard.toFixed(2)}</span>
+                    <!-- Split Pricing Block -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 min-w-[300px] space-y-3">
+                        <div class="text-xs text-slate-500 uppercase tracking-wider font-bold border-b border-slate-200 pb-1 flex justify-between">
+                            <span>Cost Breakdown</span>
+                            <span>Family of 5</span>
                         </div>
-                        ${item.transportType.includes('Train') ? `
-                        <div class="flex justify-between items-baseline text-emerald-700 font-medium">
-                            <span class="text-xs">With BahnCard 25:</span>
-                            <span class="text-lg font-bold">€${item.totalBC25.toFixed(2)}</span>
-                        </div>` : ''}
-                        
-                        <!-- Open Deal in New Tab Link Button -->
-                        <a href="${item.bookingUrl}" target="_blank" rel="noopener noreferrer" class="w-full mt-2 inline-block bg-slate-900 hover:bg-indigo-600 text-white text-xs font-medium py-2 px-4 rounded-lg transition text-center">
-                            Open Deal in New Tab <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                        </a>
+
+                        <!-- Transport Line Item -->
+                        <div class="flex justify-between items-center text-xs">
+                            <div>
+                                <span class="font-medium text-slate-700">Transport:</span>
+                                <a href="${item.transportUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Book <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bold text-slate-900">€${item.transportCostStandard.toFixed(2)}</span>
+                                ${isTrain ? `<br><span class="text-[10px] text-emerald-700 font-medium">BC25: €${item.transportCostBahnCard25.toFixed(2)}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Stay Line Item -->
+                        <div class="flex justify-between items-center text-xs">
+                            <div>
+                                <span class="font-medium text-slate-700">Accommodation:</span>
+                                <a href="${item.stayUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1 font-semibold">[Check <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>]</a>
+                            </div>
+                            <span class="font-bold text-slate-900">€${item.stayCost.toFixed(2)}</span>
+                        </div>
+
+                        <!-- Combined Totals -->
+                        <div class="border-t border-slate-200 pt-2 space-y-1">
+                            <div class="flex justify-between items-baseline text-xs">
+                                <span class="text-slate-600 font-medium">Total Standard:</span>
+                                <span class="text-base font-black text-slate-900">€${totalStandard.toFixed(2)}</span>
+                            </div>
+                            ${isTrain ? `
+                            <div class="flex justify-between items-baseline text-xs text-emerald-700 font-bold">
+                                <span>Total w/ BahnCard 25:</span>
+                                <span class="text-sm">€${totalBC25.toFixed(2)}</span>
+                            </div>` : ''}
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // Initialize on load
