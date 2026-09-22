@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhad's Check24 Best Deal Finder</title>
+    <title>Farhad's Global Family Travel Portal (No Price Limits)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,20 +15,20 @@
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-check-to-slot"></i> Check24.de Exclusive Deal Aggregator
+                    <i class="fa-solid fa-earth-americas"></i> Global Check24 Deal Aggregator (No Budget Caps)
                 </div>
                 <h1 class="text-2xl md:text-3xl font-black mt-1">
-                    Dresden Family Package Finder
+                    Worldwide Family Package Finder
                 </h1>
                 <p class="text-slate-400 text-xs mt-1">
-                    Filtering best-value package deals from Check24 (Up to €5,000 budget).
+                    Displaying every country and worldwide destination sorted lowest to highest price.
                 </p>
             </div>
             
             <!-- Clean Profile Badge -->
             <div class="bg-slate-800/90 px-4 py-3 rounded-xl border border-slate-700 text-xs shadow-inner">
                 <p class="font-bold text-indigo-300 flex items-center gap-1">
-                    <i class="fa-solid fa-users"></i> Config: 2 Adults + 3 Kids (Dresden Hub)
+                    <i class="fa-solid fa-users"></i> Config: 2 Adults + 3 Kids (Dresden / BER Hub)
                 </p>
             </div>
         </div>
@@ -40,17 +40,17 @@
         <!-- Controls Section -->
         <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Max Family Budget</label>
-                <select id="budgetFilter" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" onchange="renderCheck24Deals()">
-                    <option value="5000">Up to €5,000</option>
-                    <option value="3000">Up to €3,000</option>
-                    <option value="1800">Up to €1,800 (Budget Specials)</option>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Region Filter</label>
+                <select id="regionFilter" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" onchange="renderGlobalDeals()">
+                    <option value="all">🌍 All Countries & Worldwide Destinations</option>
+                    <option value="europe">🇪🇺 Europe & Mediterranean</option>
+                    <option value="longhaul">🌴 Long-Haul & Tropical Worldwide</option>
                 </select>
             </div>
 
             <div class="flex items-end">
-                <button onclick="renderCheck24Deals()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
-                    <i class="fa-solid fa-rotate"></i> Refresh Check24 Feeds
+                <button onclick="renderGlobalDeals()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
+                    <i class="fa-solid fa-rotate"></i> Refresh Worldwide Feeds
                 </button>
             </div>
         </section>
@@ -58,7 +58,7 @@
         <!-- Results Display Header -->
         <div class="flex justify-between items-center px-2">
             <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-award text-emerald-600"></i> Best Check24 Deals (Sorted Lowest Price)
+                <i class="fa-solid fa-globe text-emerald-600"></i> Global Offers (Sorted Lowest Price)
             </h2>
             <span id="resultCount" class="text-xs bg-emerald-50 text-emerald-700 font-bold px-3 py-1.5 rounded-full border border-emerald-100">0 Offers</span>
         </div>
@@ -72,77 +72,145 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-xs mt-12">
-        <p>Farhad's Family Travel Hub &bull; Powered by Check24.de Package Feeds</p>
+        <p>Farhad's Global Travel Hub &bull; Powered by Check24.de Worldwide Inventory</p>
     </footer>
 
     <!-- Script Logic -->
     <script>
-        const check24Deals = [
+        const globalDeals = [
             {
-                title: "Antalya All-Inclusive Beach Resort",
-                route: "Direct Flight from Dresden (DRS) / Berlin (BER) + Hotel + Transfers",
+                title: "Bulgaria (Golden Sands) Family Beach Holiday",
+                region: "europe",
+                route: "Flight from Dresden/BER + Family Hotel Package",
+                duration: "7 Nights / 8 Days",
+                price: 980.00,
+                badge: "🇪🇺 Budget European Choice",
+                desc: "Extremely affordable family beaches along the Black Sea coast with full board options.",
+                searchCity: "Goldstrand"
+            },
+            {
+                title: "Antalya All-Inclusive Beach Resort (Turkey)",
+                region: "europe",
+                route: "Direct Flight from DRS/BER + Resort + Transfers",
                 duration: "7 Nights / 8 Days",
                 price: 1350.00,
-                badge: "🏆 #1 Best Value on Check24",
+                badge: "🏆 #1 Best Value",
                 desc: "Top family resort with water slides, all meals, drinks, and baggage included.",
                 searchCity: "Antalya"
             },
             {
-                title: "Mallorca Family Suite Package",
-                route: "Flight from Berlin Brandenburg (BER) + 4-Star Hotel",
+                title: "Mallorca Family Suite Package (Spain)",
+                region: "europe",
+                route: "Flight from Berlin (BER) + 4-Star Hotel",
                 duration: "7 Nights / 8 Days",
                 price: 1590.00,
-                badge: "🔥 Trending Deal",
+                badge: "🇪🇸 Spain Top Family Pick",
                 desc: "Short flight time from BER, children's pool, and apartment-style family suites.",
                 searchCity: "Palma de Mallorca"
             },
             {
                 title: "Greek Islands (Rhodes) Beach Resort",
+                region: "europe",
                 route: "Flight from BER/DRS + All-Inclusive Beach Hotel",
                 duration: "10 Nights / 11 Days",
                 price: 2450.00,
-                badge: "⭐ Highly Rated",
+                badge: "🇬🇷 Greek Island Sun",
                 desc: "Family beach resort with dedicated kids club and seaside access.",
                 searchCity: "Rhodes"
             },
             {
-                title: "Tenerife Winter Sun Package",
+                title: "Tenerife Winter Sun Package (Canary Islands)",
+                region: "europe",
                 route: "Flight from Berlin (BER) + Heated Pool Resort",
                 duration: "10 Nights / 11 Days",
                 price: 2890.00,
-                badge: "🌴 Guaranteed Sunshine",
+                badge: "🏝️ Atlantic Sunshine",
                 desc: "Escape to warm Atlantic weather with complete tour operator bundle.",
                 searchCity: "Tenerife"
             },
             {
+                title: "Abu Dhabi Luxury Family Escape (UAE)",
+                region: "longhaul",
+                route: "Direct/Transfer Flight + 5-Star Resort",
+                duration: "7 Nights / 8 Days",
+                price: 3250.00,
+                badge: "🇦🇪 Middle East Luxury",
+                desc: "World-class theme parks (Yas Waterworld), luxury family amenities, and sunshine.",
+                searchCity: "Abu Dhabi"
+            },
+            {
+                title: "Phuket Tropical Beach Paradise (Thailand)",
+                region: "longhaul",
+                route: "Long-haul Flight + Beach Resort & Spa",
+                duration: "10 Nights / 11 Days",
+                price: 3890.00,
+                badge: "🇹🇭 Exotic Asian Holiday",
+                desc: "Experience Thai hospitality, white sand beaches, and lush tropical gardens.",
+                searchCity: "Phuket"
+            },
+            {
                 title: "Turkish Riviera Ultra Luxury Resort",
+                region: "europe",
                 route: "Direct Flight + 5-Star Ultra All-Inclusive",
                 duration: "14 Nights / 15 Days",
                 price: 4100.00,
-                badge: "💎 Luxury Pick",
+                badge: "💎 European Premium Pick",
                 desc: "Ultimate 5-star relaxation, premium dining, and professional childcare services.",
                 searchCity: "Belek"
+            },
+            {
+                title: "Dominican Republic All-Inclusive Beach Dream",
+                region: "longhaul",
+                route: "Direct Long-haul Flight + Caribbean Resort",
+                duration: "9 Nights / 10 Days",
+                price: 4650.00,
+                badge: "🇩🇴 Caribbean Paradise",
+                desc: "Palm-fringed white beaches, crystal clear turquoise water, and all-inclusive luxury.",
+                searchCity: "Punta Cana"
+            },
+            {
+                title: "Maldives Private Island Family Bungalow",
+                region: "longhaul",
+                route: "International Flight + Speedboat + Beach Bungalow",
+                duration: "7 Nights / 8 Days",
+                price: 5400.00,
+                badge: "🇲🇻 Ultimate Bucket List",
+                desc: "Crystal clear lagoons, coral reefs, and unforgettable overwater family experiences.",
+                searchCity: "Male"
+            },
+            {
+                title: "Mexico (Riviera Maya/Cancun) Resort",
+                region: "longhaul",
+                route: "Long-haul Flight + 5-Star All-Inclusive",
+                duration: "10 Nights / 11 Days",
+                price: 5950.00,
+                badge: "🇲🇽 Mayan Coast Adventure",
+                desc: "Ancient culture, stunning white sand beaches, and world-class family resorts.",
+                searchCity: "Cancun"
             }
         ];
 
-        function renderCheck24Deals() {
-            const maxBudget = parseFloat(document.getElementById('budgetFilter').value);
+        function renderGlobalDeals() {
+            const region = document.getElementById('regionFilter').value;
             const container = document.getElementById('resultsContainer');
 
-            let filtered = check24Deals.filter(item => item.price <= maxBudget);
+            let filtered = [...globalDeals];
 
-            // Sort strictly lowest to highest price
+            if (region !== 'all') {
+                filtered = filtered.filter(item => item.region === region);
+            }
+
+            // Sort strictly lowest to highest price across all ranges
             filtered.sort((a, b) => a.price - b.price);
 
-            document.getElementById('resultCount').innerText = `${filtered.length} Offers Found`;
+            document.getElementById('resultCount').innerText = `${filtered.length} Worldwide Offers Found`;
 
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No Check24 deals match your budget under €${maxBudget}. Try increasing your budget filter.</div>`;
+                container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-500 border border-slate-200">No deals match this region filter.</div>`;
                 return;
             }
 
             container.innerHTML = filtered.map(item => {
-                // Clean working Check24 search link
                 const check24Url = `https://www.check24.de/pauschalreisen/suchen?destination=${encodeURIComponent(item.searchCity)}`;
 
                 return `
@@ -150,7 +218,7 @@
                     <div class="space-y-2 flex-grow">
                         <div class="flex items-center gap-3">
                             <span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">${item.badge}</span>
-                            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2.5 py-1 rounded-md">Check24.de</span>
+                            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2.5 py-1 rounded-md">Check24.de Worldwide</span>
                         </div>
                         <h3 class="text-xl font-black text-slate-900">${item.title}</h3>
                         <p class="text-sm text-slate-600 flex items-center gap-2">
@@ -177,7 +245,7 @@
 
                         <div class="pt-2">
                             <a href="${check24Url}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center block transition shadow-sm">
-                                View Deal on Check24.de <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                                View Worldwide Deal on Check24.de <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -185,7 +253,7 @@
             `}).join('');
         }
 
-        window.onload = renderCheck24Deals;
+        window.onload = renderGlobalDeals;
     </script>
 </body>
 </html>
