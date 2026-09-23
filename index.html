@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>TomToms Mathe-Übungsblatt (50 Fragen)</title>
+    <title>TomToms Mathe-Übungsblatt (50 Fragen - Tinto Stil)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,32 +38,51 @@
             padding-left: 0;
         }
         li {
-            margin: 5px 0;
+            margin: 8px 0;
         }
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-        .cube-box {
-            font-family: monospace;
-            background: #fafafa;
-            border: 1px solid #999;
-            padding: 4px 8px;
-            display: inline-block;
-            margin: 2px 0;
-            line-height: 1.1;
-            font-size: 12px;
+        /* Tinto Book Style Visual Cube Grids */
+        .cube-pic-container {
+            display: inline-flex;
+            gap: 15px;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 4px 0;
+        }
+        .cube-grid {
+            display: grid;
+            gap: 2px;
+        }
+        .c-block {
+            width: 18px;
+            height: 18px;
+            background: #38bdf8;
+            border: 1px solid #0369a1;
+            border-radius: 3px;
+        }
+        .c-empty {
+            width: 18px;
+            height: 18px;
+            background: transparent;
         }
         @media print {
             body { margin: 10px; font-size: 11px; }
             h3 { margin-top: 10px; margin-bottom: 5px; }
+            .cube-pic-container { background: white; border: 1px solid #999; }
+            .c-block { background: #cbd5e1; border: 1px solid #333; }
         }
     </style>
 </head>
 <body>
 
-    <h1>📝 Mathe-Testvorbereitung (Klasse 1 - Tinto Basis)</h1>
+    <h1>📝 Mathe-Testvorbereitung (Klasse 1 - Tinto Stil)</h1>
     <div class="header-info">
         <span>Name: ___________________________</span>
         <span>Datum: _______________</span>
@@ -123,50 +142,113 @@
         </ul>
     </div>
 
-    <h3>Teil 4: Würfelbauten (Tinto-Stil Skizzen)</h3>
+    <h3>Teil 4: Würfelbauten (Mit Tinto-Bildern)</h3>
     <div class="grid-2">
         <ul>
             <li>
                 <strong>1) Dreier-Turm:</strong><br>
-                <div class="cube-box">[📦]<br>[📦]<br>[📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: 18px;">
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>2) Grundriss 2x2:</strong><br>
-                <div class="cube-box">[📦] [📦]<br>[📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(2, 18px);">
+                        <div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>3) Turm mit Anbau:</strong><br>
-                <div class="cube-box">&nbsp;&nbsp;&nbsp;[📦]<br>[📦] [📦]<br>&nbsp;&nbsp;&nbsp;[📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(2, 18px);">
+                        <div class="c-empty"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-empty"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>4) Kleine Treppe:</strong><br>
-                <div class="cube-box">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[📦]<br>&nbsp;&nbsp;[📦] [📦]<br>[📦] [📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(3, 18px);">
+                        <div class="c-empty"></div><div class="c-empty"></div><div class="c-block"></div>
+                        <div class="c-empty"></div><div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>5) Raster 3x3:</strong><br>
-                <div class="cube-box">[📦] [📦] [📦]<br>[📦] [📦] [📦]<br>[📦] [📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(3, 18px);">
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
         </ul>
         <ul>
             <li>
                 <strong>6) Einzelner Würfel:</strong><br>
-                <div class="cube-box">[📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: 18px;">
+                        <div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>7) Vierer-Reihe:</strong><br>
-                <div class="cube-box">[📦] [📦] [📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(4, 18px);">
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
-                <strong>8) Doppelter Turm (2x Höhe 2):</strong><br>
-                <div class="cube-box">[📦] [📦]<br>[📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <strong>8) Doppelter Turm (2x2):</strong><br>
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(2, 18px);">
+                        <div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
                 <strong>9) Stepp-Treppe (4 Stufen):</strong><br>
-                <div class="cube-box">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[📦]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[📦] [📦]<br>&nbsp;&nbsp;[📦] [📦] [📦]<br>[📦] [📦] [📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(4, 18px);">
+                        <div class="c-empty"></div><div class="c-empty"></div><div class="c-empty"></div><div class="c-block"></div>
+                        <div class="c-empty"></div><div class="c-empty"></div><div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-empty"></div><div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div><div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
             <li>
-                <strong>10) Hausform (2x2 + Dach):</strong><br>
-                <div class="cube-box">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[📦]<br>&nbsp;&nbsp;[📦] [📦]<br>&nbsp;&nbsp;[📦] [📦]</div> Gesamtzahl: ______ Würfel
+                <strong>10) Hausform:</strong><br>
+                <div class="cube-pic-container">
+                    <div class="cube-grid" style="grid-template-columns: repeat(2, 18px);">
+                        <div class="c-empty"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div>
+                        <div class="c-block"></div><div class="c-block"></div>
+                    </div>
+                    <span>&rarr; Gesamtzahl: ______ Würfel</span>
+                </div>
             </li>
         </ul>
     </div>
