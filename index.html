@@ -1,135 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhad's Live Global Travel Portal</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TomToms Mathe-Übungsblatt (50 Fragen)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            color: #000;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 15px;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-left: 4px solid #333;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 6px 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media print {
+            body { margin: 15px; font-size: 12px; }
+            h3 { margin-top: 15px; }
+        }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+<body>
 
-    <!-- Header -->
-    <header class="bg-slate-900 text-white shadow-lg border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-earth-americas"></i> Live Worldwide Search Constructor
-                </div>
-                <h1 class="text-2xl md:text-3xl font-black mt-1">
-                    Global Family Travel Hub
-                </h1>
-                <p class="text-slate-400 text-xs mt-1">
-                    No price limits. Search any country or worldwide destination live.
-                </p>
-            </div>
-            
-            <div class="bg-slate-800/90 px-4 py-3 rounded-xl border border-slate-700 text-xs shadow-inner">
-                <p class="font-bold text-indigo-300 flex items-center gap-1">
-                    <i class="fa-solid fa-users"></i> Config: 2 Adults + 3 Kids (Dresden Hub)
-                </p>
-            </div>
-        </div>
-    </header>
+    <h1>📝 Mathe-Testvorbereitung (Klasse 1)</h1>
+    <div class="header-info">
+        <span>Name: ___________________________</span>
+        <span>Datum: _______________</span>
+    </div>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full space-y-6">
+    <h3>Teil 1: Rechnen bis 20</h3>
+    <div class="grid-2">
+        <ul>
+            <li>1) 7 + 5 = &nbsp; ______</li>
+            <li>2) 14 - 6 = &nbsp; ______</li>
+            <li>3) 9 + 8 = &nbsp; ______</li>
+            <li>4) 19 - 5 = &nbsp; ______</li>
+            <li>5) 6 + 7 = &nbsp; ______</li>
+        </ul>
+        <ul>
+            <li>6) 11 + 4 = &nbsp; ______</li>
+            <li>7) 18 - 7 = &nbsp; ______</li>
+            <li>8) 8 + 8 = &nbsp; ______</li>
+            <li>9) 15 - 9 = &nbsp; ______</li>
+            <li>10) 10 + 6 = &nbsp; ______</li>
+        </ul>
+    </div>
 
-        <!-- Universal Search Box -->
-        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-            <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Type Any Country or City Worldwide</label>
-                <input type="text" id="globalSearchInput" value="Thailand" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="e.g. Japan, Greece, Maldives, USA">
-            </div>
+    <h3>Teil 2: Zahlen vergleichen (&gt;, &lt;, =)</h3>
+    <div class="grid-2">
+        <ul>
+            <li>1) 12 &nbsp; _____ &nbsp; 15</li>
+            <li>2) 18 &nbsp; _____ &nbsp; 18</li>
+            <li>3) 20 &nbsp; _____ &nbsp; 14</li>
+            <li>4) 11 &nbsp; _____ &nbsp; 16</li>
+            <li>5) 17 &nbsp; _____ &nbsp; 9</li>
+        </ul>
+        <ul>
+            <li>6) 13 &nbsp; _____ &nbsp; 19</li>
+            <li>7) 16 &nbsp; _____ &nbsp; 16</li>
+            <li>8) 8 &nbsp; _____ &nbsp; 12</li>
+            <li>9) 19 &nbsp; _____ &nbsp; 10</li>
+            <li>10) 14 &nbsp; _____ &nbsp; 15</li>
+        </ul>
+    </div>
 
-            <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Departure Hub</label>
-                <select id="hubInput" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    <option value="DRS">Dresden Airport (DRS)</option>
-                    <option value="BER">Berlin Brandenburg (BER)</option>
-                    <option value="PRG">Prague (PRG)</option>
-                </select>
-            </div>
+    <h3>Teil 3: Tabellen, Aufgabenfamilien & Rechenmauern</h3>
+    <div class="grid-2">
+        <ul>
+            <li>1) <strong>Tabelle (+3):</strong> 4 &rarr; 7 &rarr; ______</li>
+            <li>2) <strong>Tabelle (+2):</strong> 6 &rarr; 8 &rarr; ______</li>
+            <li>3) <strong>Aufgabenrolle:</strong> 5 &rarr; +4 &rarr; 9 &rarr; -2 &rarr; ______</li>
+            <li>4) <strong>Aufgabenrolle:</strong> 12 &rarr; -3 &rarr; 9 &rarr; +5 &rarr; ______</li>
+            <li>5) <strong>Tauschaufgabe:</strong> 7 + 4 = 11 &rarr; ___ + ___ = 11</li>
+        </ul>
+        <ul>
+            <li>6) <strong>Tauschaufgabe:</strong> 3 + 9 = 12 &rarr; ___ + ___ = 12</li>
+            <li>7) <strong>Rechenmauer:</strong> Unten [4], [3] &rarr; Oben [ ______ ]</li>
+            <li>8) <strong>Rechenmauer:</strong> Unten [5], [6] &rarr; Oben [ ______ ]</li>
+            <li>9) <strong>Rechenmauer:</strong> Oben [12], Links [5] &rarr; Rechts [ ______ ]</li>
+            <li>10) <strong>Rechenmauer:</strong> Oben [15], Rechts [7] &rarr; Links [ ______ ]</li>
+        </ul>
+    </div>
 
-            <div>
-                <button onclick="launchGlobalSearch()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3.5 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm cursor-pointer text-sm">
-                    <i class="fa-solid fa-magnifying-glass"></i> Search Live Inventories
-                </button>
-            </div>
-        </section>
+    <h3>Teil 4: Würfelbauten</h3>
+    <div class="grid-2">
+        <ul>
+            <li>1) Sichtbarer Dreier-Turm (Stack): ______ Würfel</li>
+            <li>2) Symmetrischer Grundriss 2x2: ______ Würfel</li>
+            <li>3) Turm der Höhe 3 mit 1 Anbau: ______ Würfel</li>
+            <li>4) Treppe mit Stufen 1, 2, 3: ______ Würfel</li>
+            <li>5) Rastergebäude mit 9 Grundwürfeln (3x3): ______ Würfel</li>
+        </ul>
+        <ul>
+            <li>6) Ein einzelner Steh-Würfel: ______ Würfel</li>
+            <li>7) Flacher Teppich aus 4 Würfeln: ______ Würfel</li>
+            <li>8) Doppelter Turm (2x Höhe 2): ______ Würfel</li>
+            <li>9) Stepp-Treppe mit 4 Stufen (1+2+3+4): ______ Würfel</li>
+            <li>10) Hausform (2x2 Boden + Dachwürfel): ______ Würfel</li>
+        </ul>
+    </div>
 
-        <!-- Popular Worldwide Quick Shortcuts -->
-        <div class="space-y-4">
-            <h2 class="text-lg font-black text-slate-900 flex items-center gap-2 px-2">
-                <i class="fa-solid fa-fire text-amber-500"></i> Popular Worldwide Destinations (Click to Search Live)
-            </h2>
+    <h3>Teil 5: Sachaufgaben</h3>
+    <ul>
+        <li>1) Anna hat 8 Sticker und bekommt 5 dazu. Wie viele Sticker hat sie?<br><strong>Rechnung:</strong> ________________________ = ______ Sticker</li>
+        <li>2) Tom hatte 14 Murmeln und verliert 4. Wie viele hat er noch?<br><strong>Rechnung:</strong> ________________________ = ______ Murmeln</li>
+        <li>3) Lisa backt 7 Muffins am Samstag und 6 am Sonntag. Wie viele insgesamt?<br><strong>Rechnung:</strong> ________________________ = ______ Muffins</li>
+        <li>4) 17 Kinder sind auf dem Spielplatz, 5 gehen hinein. Wie viele sind draußen?<br><strong>Rechnung:</strong> ________________________ = ______ Kinder</li>
+        <li>5) Max hat 9 rote und 8 blaue Autos. Wie viele Autos hat er insgesamt?<br><strong>Rechnung:</strong> ________________________ = ______ Autos</li>
+        <li>6) In einer Schachtel liegen 12 Buntstifte. 3 brechen ab. Wie viele ganze Stifte bleiben?<br><strong>Rechnung:</strong> ________________________ = ______ Stifte</li>
+        <li>7) Sarah liest am Montag 6 Seiten und am Dienstag 7 Seiten. Wie viele Seiten hat sie gelesen?<br><strong>Rechnung:</strong> ________________________ = ______ Seiten</li>
+        <li>8) Tim hat 16 Äpfel im Korb und isst 4 davon auf. Wie viele Äpfel sind übrig?<br><strong>Rechnung:</strong> ________________________ = ______ Äpfel</li>
+        <li>9) Auf einem Ast sitzen 5 Vögel. Es fliegen noch 7 Vögel dazu. Wie viele Vögel sitzen jetzt dort?<br><strong>Rechnung:</strong> ________________________ = ______ Vögel</li>
+        <li>10) Emma hat 20 Euro Taschengeld und kauft ein Heft für 8 Euro. Wie viel Geld hat sie noch?<br><strong>Rechnung:</strong> ________________________ = ______ Euro</li>
+    </ul>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <button onclick="searchQuick('Japan')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇯🇵 Japan</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Tokyo, Kyoto & Culture</div>
-                </button>
-                <button onclick="searchQuick('Greece')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇬🇷 Greece</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Islands & Resorts</div>
-                </button>
-                <button onclick="searchQuick('Thailand')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇹🇭 Thailand</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Phuket, Bangkok & Beaches</div>
-                </button>
-                <button onclick="searchQuick('United States')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇺🇸 United States</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Florida & California</div>
-                </button>
-                <button onclick="searchQuick('Spain')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇪🇸 Spain</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Mallorca, Tenerife & Costa</div>
-                </button>
-                <button onclick="searchQuick('Turkey')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇹🇷 Turkey</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Antalya & Turkish Riviera</div>
-                </button>
-                <button onclick="searchQuick('Maldives')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇲🇻 Maldives</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Overwater Bungalows</div>
-                </button>
-                <button onclick="searchQuick('Egypt')" class="bg-white p-4 rounded-xl border border-slate-200 hover:border-emerald-400 text-left transition shadow-sm cursor-pointer">
-                    <div class="font-bold text-slate-900">🇪🇬 Egypt</div>
-                    <div class="text-xs text-slate-500 mt-0.5">Hurghada & Sharm el-Sheikh</div>
-                </button>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-6 border-t border-slate-800 text-xs mt-12">
-        <p>Farhad's Global Travel Hub &bull; Direct Live Search Constructor</p>
-    </footer>
-
-    <!-- Script Logic -->
-    <script>
-        function launchGlobalSearch() {
-            const query = document.getElementById('globalSearchInput').value.trim() || "Thailand";
-            executeSearch(query);
-        }
-
-        function searchQuick(countryName) {
-            document.getElementById('globalSearchInput').value = countryName;
-            executeSearch(countryName);
-        }
-
-        function executeSearch(destination) {
-            // Opens live search pages directly on major platforms with zero price caps
-            const check24Url = `https://www.check24.de/pauschalreisen/suchen?destination=${encodeURIComponent(destination)}`;
-            const abInDenUrlaubUrl = `https://www.ab-in-den-urlaub.de/pauschalreise/suchen?destination=${encodeURIComponent(destination)}`;
-            const skyscannerUrl = `https://www.skyscanner.de`;
-
-            window.open(check24Url, '_blank');
-            window.open(abInDenUrlaubUrl, '_blank');
-            window.open(skyscannerUrl, '_blank');
-        }
-    </script>
 </body>
 </html>
